@@ -19,3 +19,20 @@
    ~~~
    npm run start
    ~~~
+
+
+   # Projeto Eixo 3 - Loja online c/ React, Nest, Prisma e PostgreeSQL
+   `Curso: Sistemas de Informação`
+   
+   `Disciplina: Design Centrado no Usuário`
+
+   `Semestre: 3º período`
+
+
+   ## Integrantes:
+   - Gabriel Amorim Santos
+   - Lucas Morais Barcelos
+   - Paulo Alves Andrade
+   - Pedro Henrique Nunes Alves
+   - Victor Hugo Vasquez da Silva
+   - Wesney Andrade Souza

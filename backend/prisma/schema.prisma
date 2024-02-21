@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Login {
+  CODUSU Int @id @default(autoincrement())
+
+  EMAIL     String
+  SENHA     String
+  PERMISSAO String? @default("CLIENTE")
+
+  @@map("LOGIN")
+}
+
+model Categorias {
+  CODCAT    Int    @id @default(autoincrement())
+  CATEGORIA String
+
+  PRODUTOS Produtos[]
+}
+
+model Produtos {
+  CODPROD Int @id @default(autoincrement())
+
+  PRODUTO   String
+  DESCRICAO String
+  IMAGEM    String
+  ESTOQUE   Float
+
+  VALOR      Float
+  DESCONTO   Float
+  CATEGORIAS Categorias? @relation(fields: [CODCAT], references: [CODCAT])
+  CODCAT     Int?
+
+  ITENSPEDIDO ItensPedido[]
+
+  @@map("PRODUTO")
+}
+
+model Pedido {
+  CODPED Int @id @default(autoincrement())
+
+  SUBTOTAL   Float
+  VALORTOTAL Float
+  DESCONTO   Float
+  FRETE      Float
+
+  ITENSPEDIDO ItensPedido[]
+
+  DATAINC DateTime @default(now())
+
+  @@map("PEDIDOS")
+}
+
+model ItensPedido {
+  CODITEM Int @id @default(autoincrement())
+
+  Produtos Produtos? @relation(fields: [CODPROD], references: [CODPROD])
+  CODPROD  Int?
+  Pedido   Pedido?   @relation(fields: [CODPED], references: [CODPED])
+  CODPED   Int?
+}

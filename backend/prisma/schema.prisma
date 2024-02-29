@@ -25,9 +25,11 @@ model Login {
 
 model Categorias {
   CODCAT    Int    @id @default(autoincrement())
-  CATEGORIA String
 
+  CATEGORIA String
   PRODUTOS Produtos[]
+  
+  @@map("CATEGORIAS")
 }
 
 model Produtos {

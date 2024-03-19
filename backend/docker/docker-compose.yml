@@ -1,9 +1,11 @@
-postgres:
-  image: postgres
-  restart: always
-  cpus: '0.5'
-  mem_limit: 512m
-  environment:
-    POSTGRES_PASSWORD: 'thinklife'
-  ports:
-    - '5432:5432'
+version: '3'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    cpus: '0.5'
+    mem_limit: 512m
+    environment:
+      POSTGRES_PASSWORD: 'facul'
+    ports:
+      - '9090:5432'

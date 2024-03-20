@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Error404 from "./components/Error404";
 import Aboutus from "./components/Aboutus";
 import Likedproducts from "./components/Likedproducts";
+import
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error404 />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 const Error404 = () => {
   return (
-    <div className="img_container">
-      <img className="img" src={ErroSVG} alt="Erro 404" />
-      <p className="p">
+    <div className="img_container-error">
+      <img className="img-error" src={ErroSVG} alt="Erro 404" />
+      <p className="p-error">
         Você achou uma página que não existe. <br /> Deseja voltar para a <Link to="/">tela principal</Link>?
       </p>
     </div>

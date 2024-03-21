@@ -1,5 +1,5 @@
 
-   # Projeto Eixo 3 - Loja online c/ React, Nest, Prisma e PostgreeSQL
+   # Projeto Eixo 3 - Loja online c/ React, Nest, Prisma e PostgreSQL
    `Curso: Sistemas de Informação`
    
    `Disciplina: Design Centrado no Usuário`

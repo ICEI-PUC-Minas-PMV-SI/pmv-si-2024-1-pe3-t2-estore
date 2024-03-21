@@ -68,6 +68,11 @@ input[type="submit"] {
   align-items: center;
 }
 
+.form-register h1 {
+  font-size: 6vh;
+  font-weight: 800;
+}
+
 .image-register {
   display: flex;
   width: 80%;
@@ -106,7 +111,7 @@ input[type="submit"] {
   }
 
   .form-register h1 {
-    font-size: 8vw;
+    font-size: 6vw;
   }
 
   .inputs-register {

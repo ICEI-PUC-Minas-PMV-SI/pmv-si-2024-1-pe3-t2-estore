@@ -6,7 +6,7 @@ export const Register = () => {
   return (
     <div className="container-register">
       <div className="container-register-form">
-        <form action="" className="form-register">
+        <form action="POST" className="form-register">
           <h1>Registre-se aqui!</h1>
           <div className="inputs-register">
             <div className="textfield-register">
@@ -16,6 +16,10 @@ export const Register = () => {
             <div className="textfield-register">
               <label htmlFor="">Senha:</label>
               <input type="password" name="senha" id="senha" placeholder="Sua senha" />
+            </div>
+            <div className="textfield-register">
+              <label htmlFor="">Confirme sua senha:</label>
+              <input type="password" name="confSenha" id="confSenha" placeholder="Sua senha novamente" />
             </div>
             <div className="submit-register">
               <input type="submit" value="Registrar" />

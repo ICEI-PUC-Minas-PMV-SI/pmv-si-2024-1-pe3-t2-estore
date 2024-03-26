@@ -7,6 +7,7 @@ import Product from "./components/Product";
 import Register from "./components/Register";
 import Error404 from "./components/Error404";
 import Aboutus from "./components/Aboutus";
+import Login from "./components/Login";
 import Likedproducts from "./components/Likedproducts";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/product" element={<Product />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>

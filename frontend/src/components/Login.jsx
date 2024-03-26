@@ -1,24 +1,36 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import "../css/Login.css";
+
 const Login = () => {
   return (
-    <div className="register">
-    <form className="formsLogin">
-    <><div className="formsLogin_campo">
-            <label htmlFor='campoUser'>E-mail:</label> <br />
-            <input type="email" id="campoUser" className="campoLogin-login" /> <br />
-        </div><div className="formsLogin_campo">
-                <label htmlFor="senha">Senha: </label> <br />
-                <input type="password" id="senha" className="campoLogin-login" /> <br />
-            </div><div className="formsLogin_campo">
-                <input type="submit" value="Login" className='btnLogin-login' /> <br />
-            </div><label>
-                <input type="checkbox" checked="checked" name="remember" /> Me lembrar
-            </label><p className="esqueceuSenha"> Não possui conta? <Link to='/'> Clique Aqui </Link> </p><br /></>
-    </form>
+    <div className="login-container">
+      <form className="formsLogin">
+        <div className="formsLogin_campo">
+          <label htmlFor="email-login">E-mail:</label>
+          <div className="inputWithIcon">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <input type="email" id="email-login" className="campoLogin-login" placeholder="Digite seu e-mail" />
+          </div>
+        </div>
+        <div className="formsLogin_campo">
+          <label htmlFor="senha-login">Senha:</label>
+          <div className="inputWithIcon">
+            <FontAwesomeIcon icon={faLock} />
+            <input type="password" id="senha-login" className="campoLogin-login" placeholder="Digite sua senha" />
+          </div>
+        </div>
+        <div className="formsLogin_campo">
+          <input type="submit" value="Login" className="btnLogin-login" />
+        </div>
+        <p className="esqueceuSenha">
+          Não possui conta? <Link to="/">Clique Aqui</Link>
+        </p>
+      </form>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

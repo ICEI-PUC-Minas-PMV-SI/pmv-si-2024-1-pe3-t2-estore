@@ -1,11 +1,14 @@
-version: '3'
+version: '3.8'
 services:
   postgres:
-    image: postgres
+    image: postgres:latest
     restart: always
-    cpus: '0.5'
-    mem_limit: 512m
     environment:
-      POSTGRES_PASSWORD: 'facul'
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
     ports:
-      - '9090:5432'
+      - '5432:5432'
+volumes:
+  postgres:

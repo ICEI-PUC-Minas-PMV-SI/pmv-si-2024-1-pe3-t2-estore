@@ -35,7 +35,7 @@ export class AuthService {
         CPF: procuraUsu.PESSOA.CPF,
       });
 
-      return token;
+      return { token: token };
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }

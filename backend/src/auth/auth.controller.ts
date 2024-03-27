@@ -12,7 +12,7 @@ export class AuthController {
   }
 
   @Post('/registro')
-  primeiroCad(@Query() body: RegistroDto) {
+  primeiroCad(@Body() body: RegistroDto) {
     return this.authService.registro(body);
   }
 }

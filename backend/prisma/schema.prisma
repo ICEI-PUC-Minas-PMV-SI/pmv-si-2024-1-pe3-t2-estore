@@ -8,13 +8,33 @@ datasource db {
 }
 
 model Login {
-  CODUSU Int @id @default(autoincrement())
-
+  CODUSU    Int     @id @default(autoincrement())
   EMAIL     String
   SENHA     String
   PERMISSAO String? @default("CLIENTE")
 
+  PESSOA Pessoa?
+
   @@map("LOGIN")
+}
+
+model Pessoa {
+  CODPES Int @id @default(autoincrement())
+
+  NOME      String
+  SOBRENOME String
+  CPF       String
+
+  CODUSU  Int   @unique
+  USUARIO Login @relation(fields: [CODUSU], references: [CODUSU])
+
+  @@map("INFOS")
+}
+
+model Endereco {
+  CODEND Int @id @default(autoincrement())
+
+  @@map("ENDERECOS")
 }
 
 model Categorias {

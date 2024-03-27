@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Post, Query } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto, RegistroDto } from './dto/login.dto';
 
 @Controller()
 export class AuthController {
@@ -11,8 +11,8 @@ export class AuthController {
     return this.authService.login(body);
   }
 
-  @Get('/setupInicial')
-  primeiroCad(@Query() body: LoginDto) {
-    return this.authService.primeiroCadastro(body);
+  @Post('/registro')
+  primeiroCad(@Query() body: RegistroDto) {
+    return this.authService.registro(body);
   }
 }

@@ -1,12 +1,14 @@
-import React from "react";
-import { useState } from "react";
-import RegisterImg from "../assets/register.svg";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/register.css";
 import axios from "axios";
+import "../css/register.css";
+import RegisterImg from "../assets/register.svg";
 
-export const Register = () => {
+const Register = () => {
   const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const teste = "http://localhost:3000/registro";
 
   const [formData, setFormData] = useState({
@@ -26,14 +28,20 @@ export const Register = () => {
     e.preventDefault();
 
     try {
-      console.log(formData);
       const res = await axios.post(teste, formData);
       if ((res.status = 200)) {
-        console.log("foi");
+        setIsSuccess(true);
+        setMessage("Cadastrado com sucesso!");
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       }
-      navigate("/login");
     } catch (error) {
-      console.log("Erro ao se cadastrar:", error);
+      if ((error.response.status = 409)) {
+        setMessage("Email já cadastrado.");
+      } else {
+        console.log("Erro ao se cadastrar:", error);
+      }
     }
   };
 
@@ -41,6 +49,7 @@ export const Register = () => {
     <div className="container-register">
       <div className="container-register-form">
         <form className="form-register" onSubmit={handleSubmit}>
+          {message && <p className={isSuccess ? "status-success" : "status-error"}>{message}</p>}
           <h1>Registre-se aqui!</h1>
           <div className="inputs-register">
             <div className="column">

@@ -28,7 +28,7 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  width: 50%;
   padding: 30px;
   border-radius: 9px;
   box-shadow: 22px -22px rgb(0, 0, 0);
@@ -102,6 +102,28 @@ input[type="submit"] {
 
 .submit-register input:hover {
   color: black;
+}
+
+.status-error {
+  color: red;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+  margin: 5px 0 5px 0;
+  padding: 7px;
+  border-radius: 3px;
+  background-color: rgba(165, 42, 42, 0.115);
+  font-size: 15px;
+}
+
+.status-success {
+  color: greenyellow;
+  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+  margin: 5px 0 5px 0;
+  padding: 7px;
+  border-radius: 3px;
+  background-color: lightgreen;
+  font-size: 30px;
 }
 
 @media (max-width: 900px) {

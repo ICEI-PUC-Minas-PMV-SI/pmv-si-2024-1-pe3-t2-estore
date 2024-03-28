@@ -6,6 +6,8 @@ import "../css/Login.css";
 
 const Login = () => {
   const url_login = "http://localhost:3000/login";
+  const [message, setMessage] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
   const retrievetoken = localStorage.getItem("token");
@@ -20,13 +22,18 @@ const Login = () => {
     try {
       const res = await axios.post(url_login, loginData);
       if ((res.status = 200)) {
+        setIsSuccess(true);
         const token = res.data.token;
         localStorage.setItem("token", token);
         console.log(retrievetoken);
       }
       navigate("/");
     } catch (error) {
-      console.log(error);
+      if ((error.response.status = 404)) {
+        setMessage("Usuários ou senha incorretos.");
+      } else {
+        console.log("Erro ao se cadastrar:", error);
+      }
     }
   };
 
@@ -39,6 +46,7 @@ const Login = () => {
     <div className="container-register">
       <div className="container-register-form">
         <form className="form-register-login" onSubmit={handleValidateLogin}>
+          {message && <p className={isSuccess ? "status-success" : "status-error"}>{message}</p>}
           <h1>Faça login aqui!</h1>
           <div className="inputs-register">
             <div className="column-login">

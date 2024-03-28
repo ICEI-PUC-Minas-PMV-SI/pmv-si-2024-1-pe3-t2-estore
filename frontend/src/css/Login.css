@@ -23,12 +23,12 @@ input[type="submit"] {
   align-items: center;
 }
 
-.form-register {
+.form-register-login {
   background-color: whitesmoke;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65%;
+  width: 30%;
   padding: 30px;
   border-radius: 9px;
   box-shadow: 22px -22px rgb(0, 0, 0);
@@ -82,7 +82,7 @@ input[type="submit"] {
   align-items: center;
 }
 
-.form-register h1 {
+.form-register-login h1 {
   font-size: 6vh;
   font-weight: 800;
 }
@@ -105,7 +105,7 @@ input[type="submit"] {
 }
 
 @media (max-width: 900px) {
-  .form-register {
+  .form-register-login {
     flex-direction: column;
     margin: 60px 0 20px 0;
     box-shadow: none;

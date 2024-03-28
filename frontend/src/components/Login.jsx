@@ -38,8 +38,8 @@ const Login = () => {
   return (
     <div className="container-register">
       <div className="container-register-form">
-        <form className="form-register" onSubmit={handleValidateLogin}>
-          <h1>Registre-se aqui!</h1>
+        <form className="form-register-login" onSubmit={handleValidateLogin}>
+          <h1>Faça login aqui!</h1>
           <div className="inputs-register">
             <div className="column-login">
               <div className="textfield-register">
@@ -53,7 +53,7 @@ const Login = () => {
             </div>
           </div>
           <div className="submit-register">
-            <input type="submit" value="Registrar" />
+            <input type="submit" value="Logar" />
           </div>
         </form>
       </div>

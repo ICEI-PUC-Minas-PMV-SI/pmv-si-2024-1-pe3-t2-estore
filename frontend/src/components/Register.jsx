@@ -31,7 +31,7 @@ export const Register = () => {
       if ((res.status = 200)) {
         console.log("foi");
       }
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log("Erro ao se cadastrar:", error);
     }
@@ -43,40 +43,40 @@ export const Register = () => {
         <form className="form-register" onSubmit={handleSubmit}>
           <h1>Registre-se aqui!</h1>
           <div className="inputs-register">
-            <div className="textfield-register">
-              <label htmlFor="">Nome:</label>
-              <input type="text" name="NOME" placeholder="Seu nome" onChange={handleChange} required />
+            <div className="column">
+              <div className="textfield-register">
+                <label htmlFor="">Nome:</label>
+                <input type="text" name="NOME" id="nome" placeholder="Seu nome" onChange={handleChange} required />
+              </div>
+              <div className="textfield-register">
+                <label htmlFor="">Sobrenome:</label>
+                <input type="text" name="SOBRENOME" id="sobrenome" placeholder="Seu sobrenome" onChange={handleChange} required />
+              </div>
+              <div className="textfield-register">
+                <label htmlFor="">CPF:</label>
+                <input type="text" name="CPF" id="cpf" placeholder="Seu CPF" onChange={handleChange} required />
+              </div>
             </div>
-            <div className="textfield-register">
-              <label htmlFor="">Sobrenome:</label>
-              <input type="text" name="SOBRENOME" placeholder="Seu sobrenome" onChange={handleChange} required />
+            <div className="column">
+              <div className="textfield-register">
+                <label htmlFor="">Email:</label>
+                <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
+              </div>
+              <div className="textfield-register">
+                <label htmlFor="">Senha:</label>
+                <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
+              </div>
+              <div className="textfield-register">
+                <label htmlFor="">Confirme sua senha:</label>
+                <input type="password" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
+              </div>
             </div>
-            <div className="textfield-register">
-              <label htmlFor="">CPF:</label>
-              <input type="text" name="CPF" placeholder="Seu CPF" onChange={handleChange} required />
-            </div>
-            <div className="textfield-register">
-              <label htmlFor="">Email:</label>
-              <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
-            </div>
-            <div className="textfield-register">
-              <label htmlFor="">Senha:</label>
-              <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
-            </div>
-            <div className="textfield-register">
-              <label htmlFor="">Confirme sua senha:</label>
-              <input type="password" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
-            </div>
-            <div className="submit-register">
-              <input type="submit" value="Registrar" />
-            </div>
+          </div>
+          <div className="submit-register">
+            <input type="submit" value="Registrar" />
           </div>
         </form>
       </div>
-
-      <aside className="aside-register">
-        <img className="image-register" src={RegisterImg} alt="Erro 404" />
-      </aside>
     </div>
   );
 };

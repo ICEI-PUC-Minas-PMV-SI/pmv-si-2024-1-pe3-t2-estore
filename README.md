@@ -1,5 +1,5 @@
 
-   # Projeto Eixo 3 - Loja online c/ React, Nest, Prisma e PostgreSQL
+   # Projeto Eixo 3 - Zabbix Store
    `Curso: Sistemas de Informação`
    
    `Disciplina: Design Centrado no Usuário`

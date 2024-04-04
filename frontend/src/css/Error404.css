@@ -54,3 +54,39 @@ a:hover {
     width: 95%;
   }
 }
+
+/* CSS personalizado para os links */
+.link-no-hover:hover {
+  background-color: transparent;
+  color: inherit;
+}
+
+.link-no-hover {
+  position: relative;
+  padding: 10px 15px; /* Adicione o padding desejado */
+  display: inline-block;
+}
+
+.link-with-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  border-bottom: 2px dashed transparent;
+  transition: border-color 0.3s ease;
+}
+
+.link-with-underline:hover::after {
+  background-color: transparent;
+  border-bottom: 2px dashed black; /* Altere a cor e o estilo da linha conforme necessário */
+}
+
+@media screen and (max-width: 900px) {
+  .link-mobile-margin {
+    margin-top: 12px;
+    padding: 8px;
+  }
+}

@@ -30,7 +30,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       if ((error.response.status = 404)) {
-        setMessage("Usuários ou senha incorretos.");
+        setMessage("Usuário ou senha incorretos.");
       } else {
         console.log("Erro ao se cadastrar:", error);
       }
@@ -61,7 +61,7 @@ const Login = () => {
             </div>
           </div>
           <div className="submit-register">
-            <input type="submit" value="Logar" />
+            <input type="submit" value="Login" />
           </div>
         </form>
       </div>

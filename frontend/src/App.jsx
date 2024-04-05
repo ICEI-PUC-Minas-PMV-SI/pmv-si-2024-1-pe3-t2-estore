@@ -7,6 +7,7 @@ import Product from "./components/Product";
 import Register from "./components/Register";
 import Error404 from "./components/Error404";
 import Aboutus from "./components/Aboutus";
+import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Likedproducts from "./components/Likedproducts";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

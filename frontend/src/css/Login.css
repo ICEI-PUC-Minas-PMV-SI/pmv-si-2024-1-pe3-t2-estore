@@ -106,6 +106,7 @@ input[type="submit"] {
 
 @media (max-width: 900px) {
   .form-register-login {
+    width: 100%;
     flex-direction: column;
     margin: 60px 0 20px 0;
     box-shadow: none;

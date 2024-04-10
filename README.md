@@ -32,6 +32,9 @@
    ~~~
    npm install
    ~~~
+    ~~~
+   npx prisma init
+   ~~~
 2. Após ter terminado, para iniciar a aplicação:
    ~~~
    npm run start

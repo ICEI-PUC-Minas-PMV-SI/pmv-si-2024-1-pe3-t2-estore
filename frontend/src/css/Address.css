@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-4,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+#form-address {
+  display: flex;
+  width: 60vw;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+#form-address label {
+  margin-top: 20px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.input-column1 {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-right: 100px;
+  margin-top: 150px;
+}
+
+.input-column2 {
+  display: flex;
+  width: 50%;
+  margin-top: 150px;
+  flex-direction: column;
+}
+
+.input-profile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#submit-address {
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+  justify-content: center;
+  background-color: #b1c592;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  padding: 10px;
+  border-radius: 2px;
+  align-items: center;
+  transition: 0.1s ease-in-out;
+}
+
+#submit-address:hover {
+  color: white;
+  background-color: rgba(73, 70, 70, 0.417);
+}
+
+#form-address input:focus {
+  background-color: rgba(128, 128, 128, 0.145);
+}
+
+.css-addr {
+  background-color: transparent;
+  outline: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  padding: 5px;
+}

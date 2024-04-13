@@ -1,12 +1,14 @@
 .account-page {
   background-color: whitesmoke;
   padding-bottom: 20px;
+  height: 700px;
 }
 
 .header-account {
   display: flex;
   justify-content: center;
   width: 100%;
+
   align-items: center;
   font-family: "Poppins";
   font-weight: 700;
@@ -23,10 +25,11 @@
 .left-container-account {
   display: flex;
   padding: 20px;
+  height: 300px;
   margin-left: 20px;
   width: 20%;
   flex-direction: column;
-  justify-content: center;
+
   border-right: 1px solid #00000032;
 }
 
@@ -58,4 +61,31 @@
   justify-content: center;
   width: 70%;
   height: 100%;
+}
+
+@media (max-width: 900px) {
+  .header-account h1 {
+    font-size: 20px;
+  }
+
+  .header-container-account {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-container-account {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .right-container-account {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .account-page {
+    height: 1200px;
+  }
 }

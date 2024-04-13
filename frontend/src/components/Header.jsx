@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -12,7 +13,7 @@ function Header() {
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
         <div className="flex items-center justify-between w-full">
           <a className="flex-none text-xl font-semibold dark:text-black" href="/">
-            Zabbix Store
+            <Link to="/">Zabbix Store</Link>
           </a>
           <div className="sm:hidden">
             <button type="button" className="" onClick={toggleCollapse} aria-expanded={!isCollapsed} aria-label="Toggle navigation">
@@ -26,24 +27,23 @@ function Header() {
           <a
             className="font-medium
             font-medium text-black-600 mr-5 link-mobile-margin link-with-underline"
-            href="/product"
           >
-            Tela inicial
+            <Link to="/">Produtos</Link>
           </a>
-          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" href="/aboutus">
-            Sobre nós
+          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline">
+            <Link to="/aboutus">Sobre nós</Link>
           </a>
-          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" href="/product">
-            Produtos
+          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline">
+            <Link to="/cart">Carrinho</Link>
           </a>
-          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" href="/account">
-            Conta
+          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline">
+            <Link to="/account">Conta</Link>
           </a>
-          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" href="/register">
-            Cadastrar
+          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin">
+            <Link to="/register">Cadastrar</Link>
           </a>
-          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" href="/login">
-            Login
+          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin">
+            <Link to="/login">Login</Link>
           </a>
         </div>
       </nav>

@@ -39,8 +39,9 @@
   width: 100%;
   margin-top: 30px;
   justify-content: center;
-  background-color: #b1c592;
+  background-color: black;
   border: 1px solid rgba(0, 0, 0, 0.28);
+  color: white;
   padding: 10px;
   border-radius: 2px;
   align-items: center;
@@ -49,7 +50,7 @@
 
 #submit-address:hover {
   color: white;
-  background-color: rgba(73, 70, 70, 0.417);
+  background-color: rgba(35, 34, 34, 0.76);
 }
 
 #form-address input:focus {

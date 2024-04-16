@@ -14,6 +14,7 @@ const Address = () => {
     NUMERO: "",
     DESCRICAO: "",
   });
+  const [cepInvalido, setCepInvalido] = useState(false); // Estado para controlar a exibição da mensagem
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -46,6 +47,12 @@ const Address = () => {
         BAIRRO: data.bairro,
         CIDADE: data.localidade,
       });
+
+      if (!data.cep) {
+        setCepInvalido(true);
+      } else {
+        setCepInvalido(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -73,21 +80,22 @@ const Address = () => {
       <form id="form-address" onSubmit={handleSubmit}>
         <div className="input-column1">
           <label htmlFor="cep">CEP: </label>
-          <input type="text" name="CEP" className="css-addr" onChange={handleChange} value={cep} maxLength={9} />
+          <input type="text" name="CEP" className="css-addr" onChange={handleChange} value={cep} maxLength={9} placeholder="Digite seu cep aqui :)" />
+          {cepInvalido && <p style={{ color: "red" }}>* CEP INVÁLIDO, PREENCHA NOVAMENTE</p>}
           <label htmlFor="rua">Rua: </label>
-          <input type="text" name="RUA" className="css-addr-block" value={address.logradouro} readOnly />
+          <input type="text" name="RUA" className="css-addr-block" value={address.logradouro || ""} readOnly />
           <label htmlFor="numero">Número: </label>
-          <input type="number" name="NUMERO" onChange={othersInputs} className="css-addr" />
+          <input type="number" name="NUMERO" onChange={othersInputs} className="css-addr" max={9999999} min={0} />
           <label htmlFor="complemento">Complemento: </label>
-          <input type="text" name="COMPLEMENTO" onChange={othersInputs} className="css-addr" />
+          <input type="text" name="COMPLEMENTO" onChange={othersInputs} className="css-addr" placeholder="próximo ao supermercado..." />
         </div>
         <div className="input-column2">
           <label htmlFor="bairro">Bairro: </label>
-          <input type="text" name="BAIRRO" className="css-addr-block" value={address.bairro} readOnly />
+          <input type="text" name="BAIRRO" className="css-addr-block" value={address.bairro || ""} readOnly />
           <label htmlFor="cidade">Cidade: </label>
-          <input type="text" name="CIDADE" className="css-addr-block" value={address.localidade} readOnly />
+          <input type="text" name="CIDADE" className="css-addr-block" value={address.localidade || ""} readOnly />
           <label htmlFor="cidade">Descrição: </label>
-          <input type="text" name="DESCRICAO" className="css-addr" onChange={othersInputs} />
+          <input type="text" name="DESCRICAO" className="css-addr" onChange={othersInputs} placeholder="Casa, trabalho..." />
           <input type="submit" id="submit-address" value="Atualizar dados" />
         </div>
       </form>

@@ -10,7 +10,7 @@
 #form-profile {
   display: flex;
   justify-content: center;
-  width: 70%;
+  width: 50%;
   align-items: left;
   flex-direction: column;
   padding: 30px;
@@ -23,14 +23,17 @@
   font-weight: 600;
   font-size: 20px;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-#email-profile {
+#email-profile,
+#senha-profile,
+#senha2-profile {
   background-color: transparent;
   outline: none;
   border-bottom: 1px solid black;
-  width: 80%;
-  padding: 5px;
+  width: 70%;
+  padding: 7px;
 }
 
 #form-profile input:focus {
@@ -61,30 +64,33 @@
 
 .input-profile input {
   display: flex;
-  font-size: 20px;
-  width: 80%;
+  font-size: 18px;
+  width: 70%;
   justify-content: center;
-  background-color: #b1c592;
+  background-color: black;
+  color: white;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.28);
-  padding: 10px;
+  padding: 7px;
   align-items: center;
   transition: 0.1s ease-in-out;
 }
 
 .input-profile input:hover {
   color: white;
-  background-color: rgba(73, 70, 70, 0.417);
+  background-color: rgba(35, 34, 34, 0.76);
 }
 
 .input-profile-password input {
   display: flex;
-  width: 110%;
+  width: 100%;
   margin-top: 30px;
+  font-size: 18px;
   justify-content: center;
-  background-color: #b1c592;
+  color: white;
+  background-color: black;
   border: 1px solid rgba(0, 0, 0, 0.28);
-  padding: 10px;
+  padding: 7px;
   border-radius: 2px;
   align-items: center;
   transition: 0.1s ease-in-out;
@@ -92,7 +98,7 @@
 
 .input-profile-password input:hover {
   color: white;
-  background-color: rgba(73, 70, 70, 0.417);
+  background-color: rgba(35, 34, 34, 0.76);
 }
 #form-password-profile {
   font-size: 20px;

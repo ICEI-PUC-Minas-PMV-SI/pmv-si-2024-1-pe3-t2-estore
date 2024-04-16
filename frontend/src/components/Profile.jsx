@@ -27,7 +27,7 @@ const Profile = () => {
         <label htmlFor="nome-profile">Nome: </label>
         <input type="text" name="NOME" value={userData.NOME} readOnly className="css-addr-block" />
         <label htmlFor="sobrenome-profile">Sobrenome: </label>
-        <input type="text" name="SOBRENOME" id="sobrenome-profile" />
+        <input type="text" name="SOBRENOME" id="sobrenome-profile" className="css-addr" />
         <label htmlFor="cpf-profile">CPF: </label>
         <input type="text" name="CPF" value={userData.CPF} readOnly className="css-addr-block" />
         <div className="input-profile">

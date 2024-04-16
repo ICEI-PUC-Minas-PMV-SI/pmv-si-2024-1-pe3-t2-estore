@@ -52,6 +52,8 @@
 
 .left-container-account input:checked + label {
   font-weight: bold;
+  background-color: rgba(128, 128, 128, 0.165);
+  border-bottom: 1px solid #000000;
 }
 
 .right-container-account {

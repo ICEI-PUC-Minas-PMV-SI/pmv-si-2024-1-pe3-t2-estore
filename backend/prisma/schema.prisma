@@ -27,12 +27,25 @@ model Pessoa {
 
   CODUSU  Int   @unique
   USUARIO Login @relation(fields: [CODUSU], references: [CODUSU])
+  ENDERECOS Endereco[]
 
   @@map("INFOS")
 }
 
 model Endereco {
   CODEND Int @id @default(autoincrement())
+  CEP String 
+  RUA String
+  NUMERO String
+  BAIRRO String
+  CIDADE String
+  COMPLEMENTO String
+  LOCAL String
+  DESCRICAO String
+
+
+  PESSOA Pessoa? @relation(fields: [CODPES], references: [CODPES])
+  CODPES Int 
 
   @@map("ENDERECOS")
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function App() {
   return (
@@ -57,7 +58,7 @@ export default function App() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="mr-3 h-4 w-4">
                 <path d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
               </svg>
-              Zabbix Store
+              <a href="/">Zabbix Store</a>
             </h6>
             <p>Loja focada em vestuário feminino e masculino.</p>
           </div>
@@ -81,13 +82,15 @@ export default function App() {
           <div className="">
             <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Links Úteis</h6>
             <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200">Cadastro</a>
+              <a className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/register">Cadastro</Link>
+              </a>
             </p>
+
             <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200">Conta</a>
-            </p>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200">Sobre Nós</a>
+              <a className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/aboutus">Sobre nós</Link>
+              </a>
             </p>
             <p>
               <a className="text-neutral-600 dark:text-neutral-200">GitHub</a>

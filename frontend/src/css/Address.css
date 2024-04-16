@@ -72,3 +72,17 @@
   width: 100%;
   padding: 5px;
 }
+
+/* Adicione estas classes ao seu arquivo de estilos CSS */
+
+/* Cabeçalho visível */
+.header-visible {
+  transition: transform 0.5s ease;
+  transform: translateY(0);
+}
+
+/* Cabeçalho oculto */
+.header-hidden {
+  transition: transform 0.5s ease;
+  transform: translateY(-100%);
+}

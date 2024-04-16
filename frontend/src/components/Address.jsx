@@ -85,9 +85,9 @@ const Address = () => {
           <label htmlFor="rua">Rua: </label>
           <input type="text" name="RUA" className="css-addr-block" value={address.logradouro || ""} readOnly />
           <label htmlFor="numero">Número: </label>
-          <input type="number" name="NUMERO" onChange={othersInputs} className="css-addr" max={9999999} min={0} />
+          <input type="number" name="NUMERO" onChange={othersInputs} className="css-addr" />
           <label htmlFor="complemento">Complemento: </label>
-          <input type="text" name="COMPLEMENTO" onChange={othersInputs} className="css-addr" placeholder="próximo ao supermercado..." />
+          <input type="text" name="COMPLEMENTO" onChange={othersInputs} className="css-addr" placeholder="apto 201, bloco 06..." />
         </div>
         <div className="input-column2">
           <label htmlFor="bairro">Bairro: </label>

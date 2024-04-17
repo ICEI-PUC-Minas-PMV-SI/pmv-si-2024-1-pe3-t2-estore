@@ -1,56 +1,68 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class LoginDto {
+export class AtualizarEnderecoDto {
   @ApiProperty({
     required: true,
+    description: 'Código da enedereço',
   })
   @IsNotEmpty()
-  @IsString()
-  EMAIL: string;
-  @ApiProperty({
-    required: true,
-  })
-  @IsNotEmpty()
-  @IsString()
-  SENHA: string;
-}
+  @IsNumber()
+  CODEND: string;
 
-export class RegistroDto {
   @ApiProperty({
     required: true,
+    description: 'Bairro',
   })
   @IsNotEmpty()
   @IsString()
-  EMAIL: string;
+  BAIRRO: string;
+
   @ApiProperty({
     required: true,
+    description: 'CEP',
   })
   @IsNotEmpty()
   @IsString()
-  SENHA: string;
+  CEP: string;
+
   @ApiProperty({
     required: true,
+    description: 'Cidade',
   })
   @IsNotEmpty()
   @IsString()
-  NOME: string;
+  CIDADE: string;
+
   @ApiProperty({
     required: true,
+    description: 'Complemento',
   })
   @IsNotEmpty()
   @IsString()
-  TELEFONE: string;
+  COMPLEMENTO: string;
+
   @ApiProperty({
     required: true,
+    description: 'Descrição',
   })
   @IsNotEmpty()
   @IsString()
-  SOBRENOME: string;
+  DESCRICAO: string;
+
   @ApiProperty({
     required: true,
+    description: 'Número',
   })
   @IsNotEmpty()
   @IsString()
-  CPF: string;
+  NUMERO: string;
+
+  @ApiProperty({
+    required: true,
+    description: 'Rua',
+  })
+  @IsNotEmpty()
+  @IsString()
+  RUA: string;
 }

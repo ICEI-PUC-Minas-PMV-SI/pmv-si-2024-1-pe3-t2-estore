@@ -32,6 +32,7 @@ export class AuthService {
         CODPES: procuraUsu.PESSOA.CODPES,
         NOME: procuraUsu.PESSOA.NOME,
         SOBRENOME: procuraUsu.PESSOA.SOBRENOME,
+        TELEFONE: procuraUsu.PESSOA.TELEFONE,
         CPF: procuraUsu.PESSOA.CPF,
       });
 
@@ -64,6 +65,7 @@ export class AuthService {
           SOBRENOME: body.SOBRENOME,
           CPF: body.CPF,
           CODUSU: primeiroUsu.CODUSU,
+          TELEFONE: body.TELEFONE,
         },
       });
 
@@ -82,6 +84,7 @@ export class AuthService {
     NOME: string;
     SOBRENOME: string;
     CPF: string;
+    TELEFONE: string;
   }) {
     const payload = args;
     return await this.jwt.signAsync(payload, {

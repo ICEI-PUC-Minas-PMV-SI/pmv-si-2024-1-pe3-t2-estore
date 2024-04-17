@@ -28,7 +28,7 @@ async function bootstrap() {
 
   await app.listen(process.env.PORT, () => {
     logger.verbose(`[BACK-END] EM [ http://localhost:${process.env.PORT} ]`);
-    logger.verbose(`[BANCO] -> [ http://172.19.192.1:5555 ]`);
+    logger.verbose(`[BANCO] -> [ http://localhost:5555 ]`);
     logger.verbose(
       `[DOCUMENTAÇAO] -> [ http://localhost:${process.env.PORT}/api ]`,
     );

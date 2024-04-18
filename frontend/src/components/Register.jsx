@@ -9,13 +9,14 @@ const Register = () => {
   const [message, setMessage] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const teste = "http://localhost:3000/registro";
+  const REGISTER_URL = "http://localhost:3000/registro";
 
   const [formData, setFormData] = useState({
     NOME: "",
     SOBRENOME: "",
     EMAIL: "",
     CPF: "",
+    TELEFONE: "",
     SENHA: "",
   });
 
@@ -28,7 +29,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(teste, formData);
+      const res = await axios.post(REGISTER_URL, formData);
       if ((res.status = 200)) {
         setIsSuccess(true);
         setMessage("Cadastrado com sucesso!");
@@ -65,12 +66,17 @@ const Register = () => {
                 <label htmlFor="">CPF:</label>
                 <input type="text" name="CPF" id="cpf" placeholder="Seu CPF" onChange={handleChange} required />
               </div>
+              <div className="textfield-register">
+                <label htmlFor="">Telefone:</label>
+                <input type="text" name="TELEFONE" id="telefone" placeholder="(XX) 9 1234-5678" onChange={handleChange} required />
+              </div>
             </div>
             <div className="column">
               <div className="textfield-register">
                 <label htmlFor="">Email:</label>
                 <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
               </div>
+
               <div className="textfield-register">
                 <label htmlFor="">Senha:</label>
                 <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
@@ -79,10 +85,10 @@ const Register = () => {
                 <label htmlFor="">Confirme sua senha:</label>
                 <input type="password" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
               </div>
+              <div className="submit-register">
+                <input type="submit" id="submit-register" value="Registrar" />
+              </div>
             </div>
-          </div>
-          <div className="submit-register">
-            <input type="submit" value="Registrar" />
           </div>
         </form>
       </div>

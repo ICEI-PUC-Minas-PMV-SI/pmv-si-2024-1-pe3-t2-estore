@@ -52,12 +52,29 @@ input[type="submit"] {
   width: 100%;
 }
 
-.submit-register {
+.submit-login {
   display: flex;
-  justify-content: center;
+
   align-items: center;
   margin-top: 30px;
   width: 100%;
+}
+
+.submit-login input {
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.87);
+  color: white;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+  transition: 0.3s ease;
+}
+
+.submit-login input:hover {
+  background-color: rgba(0, 0, 0, 0.311);
+  color: black;
 }
 
 #senha,
@@ -123,7 +140,7 @@ input[type="submit"] {
     width: 100%;
   }
 
-  .submit-register input {
+  .submit-login input {
     width: 100%;
   }
 

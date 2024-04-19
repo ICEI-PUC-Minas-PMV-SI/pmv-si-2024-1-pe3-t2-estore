@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/Login.css";
 
@@ -11,6 +10,20 @@ const Login = () => {
   const navigate = useNavigate();
 
   const retrievetoken = localStorage.getItem("token");
+  useEffect(() => {
+    const retrievetoken = localStorage.getItem("token");
+    if (retrievetoken) {
+      try {
+        const decodedToken = JSON.parse(atob(retrievetoken.split(".")[1]));
+        const expirationTime = decodedToken.exp * 1000; // Convertendo segundos para milissegundos
+        if (Date.now() < expirationTime) {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [retrievetoken, navigate]);
 
   const [loginData, setLoginData] = useState({
     EMAIL: "",
@@ -21,18 +34,19 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(url_login, loginData);
-      if ((res.status = 200)) {
+      if (res.status === 201 || res.status === 204 || res.status === 200) {
         setIsSuccess(true);
         const token = res.data.token;
         localStorage.setItem("token", token);
-        console.log(retrievetoken);
+        console.log(token);
+        navigate("/");
+        window.location.reload();
       }
-      navigate("/");
     } catch (error) {
-      if ((error.response.status = 404)) {
+      if (error.response.status === 404) {
         setMessage("Usuário ou senha incorretos.");
       } else {
-        console.log("Erro ao se cadastrar:", error);
+        console.error("Erro ao fazer login:", error);
       }
     }
   };
@@ -51,11 +65,11 @@ const Login = () => {
           <div className="inputs-register">
             <div className="column-login">
               <div className="textfield-register">
-                <label htmlFor="">Email:</label>
+                <label htmlFor="email">Email:</label>
                 <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
               </div>
               <div className="textfield-register">
-                <label htmlFor="">Senha:</label>
+                <label htmlFor="senha">Senha:</label>
                 <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
               </div>
             </div>

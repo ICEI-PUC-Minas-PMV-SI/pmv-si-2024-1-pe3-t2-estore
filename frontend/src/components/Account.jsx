@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import "../css/Account.css";
 import Profile from "./Profile.jsx";
 import Address from "./Address.jsx";
@@ -6,6 +7,13 @@ import History from "./History.jsx";
 
 const Account = () => {
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/account") {
+      setSelectedCheckbox("checkbox-1a");
+    }
+  }, [location.pathname]);
 
   const handleCheckboxChange = (event) => {
     const checkboxId = event.target.id;

@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FiShoppingCart, FiUser, FiLogOut } from "react-icons/fi";
+import { MdShoppingBasket } from "react-icons/md";
 
 function Header() {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [token, setToken] = useState(null);
 
+  const storedToken = localStorage.getItem("token");
   useEffect(() => {
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
     function handleScroll() {
       const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -29,6 +37,28 @@ function Header() {
     setIsCollapsed(true);
   };
 
+  const logout = () => {
+    setIsCollapsed(true);
+
+    localStorage.removeItem("token");
+    setToken(null);
+  };
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = JSON.parse(atob(token.split(".")[1]));
+        const expirationTime = decodedToken.exp * 1000;
+        if (Date.now() > expirationTime) {
+          localStorage.removeItem("token");
+          setToken(null);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [token]);
+
   return (
     <header className={`sticky top-0 left-0 z-10 w-full bg-white text-sm py-4 dark:bg-white-800 ${isHeaderVisible ? "header-visible" : "header-hidden"}`}>
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between" aria-label="Global">
@@ -48,23 +78,44 @@ function Header() {
         </div>
         <div className={`sm:flex flex-col p-2 display flex sm:flex-row sm:items-center sm:justify-end w-full ${isCollapsed ? "hidden" : "sm:flex"}`}>
           <a className="font-medium font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
-            <Link to="/">Produtos</Link>
+            <Link to="/">
+              <MdShoppingBasket className="inline mr-1" /> Produtos
+            </Link>
           </a>
           <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
-            <Link to="/aboutus">Sobre nós</Link>
+            <Link to="/aboutus">
+              <FiUser className="inline mr-1" /> Sobre nós
+            </Link>
           </a>
-          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
-            <Link to="/cart">Carrinho</Link>
-          </a>
-          <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
-            <Link to="/account">Conta</Link>
-          </a>
-          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" onClick={closeHeader}>
-            <Link to="/register">Cadastrar</Link>
-          </a>
-          <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" onClick={closeHeader}>
-            <Link to="/login">Login</Link>
-          </a>
+
+          {token ? (
+            <>
+              <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
+                <Link to="/cart">
+                  <FiShoppingCart className="inline mr-1" /> Carrinho
+                </Link>
+              </a>
+              <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
+                <Link to="/account">
+                  <FiUser className="inline mr-1" /> Conta
+                </Link>
+              </a>
+              <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={logout}>
+                <Link to="/">
+                  <FiLogOut className="inline mr-1" /> Sair
+                </Link>
+              </a>
+            </>
+          ) : (
+            <>
+              <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" onClick={closeHeader}>
+                <Link to="/register">Cadastrar</Link>
+              </a>
+              <a className="font-medium text-white bg-black mr-5 px-4 py-2 link-no-hover link-mobile-margin" onClick={closeHeader}>
+                <Link to="/login">Login</Link>
+              </a>
+            </>
+          )}
         </div>
       </nav>
     </header>

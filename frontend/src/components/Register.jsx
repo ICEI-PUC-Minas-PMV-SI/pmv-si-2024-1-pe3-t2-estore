@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/register.css";
@@ -10,6 +10,22 @@ const Register = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const REGISTER_URL = "http://localhost:3000/registro";
+
+  const retrievetoken = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (retrievetoken) {
+      try {
+        const decodedToken = JSON.parse(atob(retrievetoken.split(".")[1]));
+        const expirationTime = decodedToken.exp * 1000;
+        if (Date.now() < expirationTime) {
+          navigate("/");
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [retrievetoken, navigate]);
 
   const [formData, setFormData] = useState({
     NOME: "",

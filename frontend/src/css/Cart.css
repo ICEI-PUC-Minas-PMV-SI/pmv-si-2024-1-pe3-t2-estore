@@ -1,0 +1,43 @@
+.cart {
+  padding: 30px;
+  background-color: rgba(128, 128, 128, 0.175);
+}
+
+.h1-header-cart {
+  font-size: 2.5vw;
+  font-weight: 700;
+}
+
+.cart-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-cart-container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 70%;
+  background-color: whitesmoke;
+}
+
+.right-cart-container {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 30px;
+  background-color: whitesmoke;
+}
+
+#close-cart {
+  align-items: center;
+  padding: 3px;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: rgb(255, 183, 0);
+}
+
+#close-cart:hover {
+  background-color: rgba(240, 100, 0, 0.592);
+}

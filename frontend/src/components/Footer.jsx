@@ -1,7 +1,31 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function App() {
+  const [token, setToken] = useState(null);
+  const storedToken = localStorage.getItem("token");
+  useEffect(() => {
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, [storedToken]);
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = JSON.parse(atob(token.split(".")[1]));
+        const expirationTime = decodedToken.exp * 1000;
+        if (Date.now() > expirationTime) {
+          localStorage.removeItem("token");
+          setToken(null);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [token]);
+
   return (
     <footer className="bg-neutral-100 text-center text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
@@ -81,11 +105,19 @@ export default function App() {
           {/* <!-- Useful links section --> */}
           <div className="">
             <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">Links Úteis</h6>
-            <p className="mb-4">
-              <a className="text-neutral-600 dark:text-neutral-200">
-                <Link to="/register">Cadastro</Link>
-              </a>
-            </p>
+            {token ? (
+              <p className="mb-4">
+                <Link className="text-neutral-600 dark:text-neutral-200" to="/account">
+                  Conta
+                </Link>
+              </p>
+            ) : (
+              <p className="mb-4">
+                <Link className="text-neutral-600 dark:text-neutral-200" to="/register">
+                  Cadastro
+                </Link>
+              </p>
+            )}
 
             <p className="mb-4">
               <a className="text-neutral-600 dark:text-neutral-200">

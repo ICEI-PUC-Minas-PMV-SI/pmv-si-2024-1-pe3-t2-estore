@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Inputs from "./fragments/Inputs";
 import axios from "axios";
 import "../css/register.css";
 import RegisterImg from "../assets/register.svg";
@@ -71,35 +72,27 @@ const Register = () => {
           <div className="inputs-register">
             <div className="column">
               <div className="textfield-register">
-                <label htmlFor="">Nome:</label>
-                <input type="text" name="NOME" id="nome" placeholder="Seu nome" onChange={handleChange} required />
+                <Inputs label="Nome:" type="text" name="NOME" id="nome" placeholder="Seu nome" onChange={handleChange} required />
               </div>
               <div className="textfield-register">
-                <label htmlFor="">Sobrenome:</label>
-                <input type="text" name="SOBRENOME" id="sobrenome" placeholder="Seu sobrenome" onChange={handleChange} required />
+                <Inputs label="Sobrenome:" type="text" name="SOBRENOME" id="sobrenome" placeholder="Seu sobrenome" onChange={handleChange} required />
               </div>
               <div className="textfield-register">
-                <label htmlFor="">CPF:</label>
-                <input type="text" name="CPF" id="cpf" placeholder="Seu CPF" onChange={handleChange} required />
+                <Inputs label="CPF:" type="text" name="CPF" id="cpf" placeholder="Seu CPF" onChange={handleChange} required />
               </div>
               <div className="textfield-register">
-                <label htmlFor="">Telefone:</label>
-                <input type="text" name="TELEFONE" id="telefone" placeholder="(XX) 9 1234-5678" onChange={handleChange} required />
+                <Inputs label="Telefone:" type="TELEFONE" name="TELEFONE" id="telefone" placeholder="(XX) 9 1234-5678" onChange={handleChange} required />
               </div>
             </div>
             <div className="column">
               <div className="textfield-register">
-                <label htmlFor="">Email:</label>
-                <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
-              </div>
-
-              <div className="textfield-register">
-                <label htmlFor="">Senha:</label>
-                <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
+                <Inputs label="Seu email: " type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
               </div>
               <div className="textfield-register">
-                <label htmlFor="">Confirme sua senha:</label>
-                <input type="password" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
+                <Inputs label="Senha: " type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
+              </div>
+              <div className="textfield-register">
+                <Inputs type="password" label="Confirme sua senha:" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
               </div>
               <div className="submit-register">
                 <input type="submit" id="submit-register" value="Registrar" />

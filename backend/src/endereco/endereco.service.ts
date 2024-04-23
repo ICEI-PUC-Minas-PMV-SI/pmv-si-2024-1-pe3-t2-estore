@@ -18,7 +18,7 @@ export class EnderecoService {
         where: { CODPES: body.CODPES },
       });
 
-      if ((buscaEnderecos.length = 3)) {
+      if (buscaEnderecos.length === 3) {
         throw new HttpException(
           `Limite de endereços cadastrados (3)`,
           HttpStatus.CONFLICT,

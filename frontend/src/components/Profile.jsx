@@ -13,6 +13,15 @@ const Profile = () => {
     EMAIL: "",
   });
 
+  const [userPassword, setUserPassword] = useState({
+    CODPES: "",
+    NOME: "",
+    SOBRENOME: "",
+    CPF: "",
+    TELEFONE: "",
+    EMAIL: "",
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -27,6 +36,7 @@ const Profile = () => {
 
           const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
           const user = response.data;
+          console.log(user);
           setUserData({
             CODPES: user.CODPES,
             NOME: user.NOME,
@@ -61,9 +71,31 @@ const Profile = () => {
     }
   };
 
+  const updatePassword = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      try {
+        const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
+        console.log(res);
+      } catch (error) {
+        console.error("Erro ao atualizar os dados:", error);
+      }
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
+  };
+
+  const handleSetPassword = (e) => {
+    const { name, value } = e.target;
+    setUserPassword({ ...userPassword, [name]: value });
   };
 
   return (
@@ -83,10 +115,10 @@ const Profile = () => {
           <input type="submit" value="Alterar dados" />
         </div>
       </form>
-      <form id="form-password-profile">
+      <form id="form-password-profile" onSubmit={updatePassword}>
         <h1>Deseja trocar sua senha?</h1>
         <label htmlFor="senha-profile">Nova senha:</label>
-        <input type="password" name="SENHA" id="senha-profile" required />
+        <input type="password" name="SENHA" id="senha-profile" onChange={handleSetPassword} required />
         <label htmlFor="senha2-profile">Confirme sua nova senha:</label>
         <input type="password" name="CONFIRMAR_SENHA" id="senha2-profile" required />
         <div className="input-profile-password">

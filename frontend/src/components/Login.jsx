@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../css/Login.css";
+import Inputs from "./fragments/Inputs";
 
 const Login = () => {
   const url_login = "http://localhost:3000/login";
@@ -63,15 +64,9 @@ const Login = () => {
           {message && <p className={isSuccess ? "status-success" : "status-error"}>{message}</p>}
           <h1>Faça login aqui!</h1>
           <div className="inputs-register">
-            <div className="column-login">
-              <div className="textfield-register">
-                <label htmlFor="email">Email:</label>
-                <input type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
-                <label htmlFor="senha">Senha:</label>
-                <input type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
-              </div>
+            <div className="textfield-register">
+              <Inputs label="Email:" type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
+              <Inputs label="Senha:" type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
             </div>
           </div>
           <div className="submit-login">

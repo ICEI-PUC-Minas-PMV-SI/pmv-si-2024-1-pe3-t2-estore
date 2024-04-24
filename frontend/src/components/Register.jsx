@@ -73,25 +73,15 @@ const Register = () => {
             <div className="column">
               <div className="textfield-register">
                 <Inputs label="Nome:" type="text" name="NOME" id="nome" placeholder="Seu nome" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
                 <Inputs label="Sobrenome:" type="text" name="SOBRENOME" id="sobrenome" placeholder="Seu sobrenome" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
                 <Inputs label="CPF:" type="text" name="CPF" id="cpf" placeholder="Seu CPF" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
                 <Inputs label="Telefone:" type="TELEFONE" name="TELEFONE" id="telefone" placeholder="(XX) 9 1234-5678" onChange={handleChange} required />
               </div>
             </div>
             <div className="column">
               <div className="textfield-register">
                 <Inputs label="Seu email: " type="text" name="EMAIL" id="email" placeholder="Seu e-mail" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
                 <Inputs label="Senha: " type="password" name="SENHA" id="senha" placeholder="Sua senha" onChange={handleChange} required />
-              </div>
-              <div className="textfield-register">
                 <Inputs type="password" label="Confirme sua senha:" name="confSenha" id="confSenha" placeholder="Sua senha novamente" required />
               </div>
               <div className="submit-register">

@@ -2,8 +2,10 @@
 #form-address {
   display: flex;
   width: 60vw;
+  height: auto;
   justify-content: space-between;
-  margin-top: 100px;
+  margin-top: 300px;
+  padding-bottom: 50px;
 }
 
 #form-address label {
@@ -73,16 +75,45 @@
   padding: 5px;
 }
 
-/* Adicione estas classes ao seu arquivo de estilos CSS */
-
-/* Cabeçalho visível */
 .header-visible {
   transition: transform 0.5s ease;
   transform: translateY(0);
 }
 
-/* Cabeçalho oculto */
 .header-hidden {
   transition: transform 0.5s ease;
   transform: translateY(-100%);
+}
+
+.endereco-container {
+  display: flex;
+  align-items: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 4px;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.116);
+}
+
+.endereco {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px;
+  font-weight: 700;
+}
+
+.endereco h1 {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+}
+
+.icon-container span {
+  cursor: pointer;
+  margin: 8px;
 }

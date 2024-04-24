@@ -100,10 +100,8 @@ function Header() {
                   <FiUser className="inline mr-1" /> Conta
                 </Link>
               </a>
-              <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={logout}>
-                <Link to="/">
-                  <FiLogOut className="inline mr-1" /> Sair
-                </Link>
+              <a href="/" className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={logout}>
+                <FiLogOut className="inline mr-1" /> Sair
               </a>
             </>
           ) : (

@@ -41,6 +41,10 @@ input[type="submit"] {
   margin-top: 20px;
 }
 
+.textfield-register label {
+  margin-top: 15px;
+}
+
 .inputs-register {
   width: 100%;
   display: flex;
@@ -109,13 +113,13 @@ input[type="submit"] {
 }
 
 .status-success {
-  color: greenyellow;
+  color: rgba(153, 255, 0, 0.915);
   letter-spacing: 1px;
   font-family: "Poppins", sans-serif;
   margin: 5px 0 5px 0;
   padding: 7px;
   border-radius: 3px;
-  background-color: lightgreen;
+  background-color: rgba(0, 0, 0, 0.588);
   font-size: 30px;
 }
 
@@ -139,7 +143,14 @@ input[type="submit"] {
     width: 100%;
   }
 
+  .textfield-register label {
+    margin-top: 10px;
+  }
   .column {
+    width: 100%;
+  }
+
+  .submit-register {
     width: 100%;
   }
 
@@ -152,7 +163,8 @@ input[type="submit"] {
   #confSenha,
   #nome,
   #sobrenome,
-  #cpf {
+  #cpf,
+  #telefone {
     width: 100%;
   }
 }

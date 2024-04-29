@@ -5,18 +5,21 @@ import "../css/Login.css";
 import Inputs from "./fragments/Inputs";
 
 const Login = () => {
+  const navigate = useNavigate();
+  // Route to check if user has an account on website
   const url_login = "http://localhost:3000/login";
+  // Messages to validate and display errors or success
   const [message, setMessage] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
-  const navigate = useNavigate();
 
+  // Checking if the token isnt expired, if not, redirect to the home page (user is already logged in)
   const retrievetoken = localStorage.getItem("token");
   useEffect(() => {
     const retrievetoken = localStorage.getItem("token");
     if (retrievetoken) {
       try {
         const decodedToken = JSON.parse(atob(retrievetoken.split(".")[1]));
-        const expirationTime = decodedToken.exp * 1000; // Convertendo segundos para milissegundos
+        const expirationTime = decodedToken.exp * 1000;
         if (Date.now() < expirationTime) {
           navigate("/");
         }
@@ -26,20 +29,23 @@ const Login = () => {
     }
   }, [retrievetoken, navigate]);
 
+  // Creating some inputs to receive and manipulate data, it will also used to send to the backend
   const [loginData, setLoginData] = useState({
     EMAIL: "",
     SENHA: "",
   });
 
+  // function to send the inputs data and check if exists in database (201, 204, 200)
+  // if not, 404 error = username or password incorrect, or else
   const handleValidateLogin = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(url_login, loginData);
       if (res.status === 201 || res.status === 204 || res.status === 200) {
         setIsSuccess(true);
+        // Saving the token into localstorage that came from backend
         const token = res.data.token;
         localStorage.setItem("token", token);
-        console.log(token);
         navigate("/");
         window.location.reload();
       }
@@ -52,8 +58,11 @@ const Login = () => {
     }
   };
 
+  // The function of this function (lol) is to receive every change in the form's input values and set in to the loginData by setLoginData
   const handleChange = (e) => {
+    // Get the name and the value of the input
     const { name, value } = e.target;
+    // set into the formData by comparing its name and allocating the value
     setLoginData({ ...loginData, [name]: value });
   };
 

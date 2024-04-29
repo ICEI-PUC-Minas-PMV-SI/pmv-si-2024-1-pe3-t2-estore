@@ -6,15 +6,17 @@ import Address from "./Address.jsx";
 import History from "./History.jsx";
 
 const Account = () => {
+  // useState for displaying components
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
+  // location will just be used to check on the "my account" checkbox when opening the page first time
   const location = useLocation();
-
   useEffect(() => {
     if (location.pathname === "/account") {
       setSelectedCheckbox("checkbox-1a");
     }
   }, [location.pathname]);
 
+  // function to check checkbox and not letting more than one checked
   const handleCheckboxChange = (event) => {
     const checkboxId = event.target.id;
 

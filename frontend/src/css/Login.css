@@ -25,6 +25,7 @@ input[type="submit"] {
 
 .form-register-login {
   background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,7 +118,7 @@ input[type="submit"] {
 }
 
 .submit-register input:hover {
-  background-color: rgba(0, 0, 0, 0.311);
+  background-color: rgba(128, 128, 128, 0.25);
   color: black;
 }
 

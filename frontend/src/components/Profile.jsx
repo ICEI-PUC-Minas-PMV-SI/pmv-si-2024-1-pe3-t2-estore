@@ -5,6 +5,7 @@ import "../css/Profile.css";
 import axios from "axios";
 
 const Profile = () => {
+  // Creating some inputs to receive and manipulate profile account data, it will also used to send to the backend
   const [userData, setUserData] = useState({
     CODPES: "",
     NOME: "",
@@ -14,6 +15,7 @@ const Profile = () => {
     EMAIL: "",
   });
 
+  // Creating some inputs to receive and manipulate password account data, it will also used to send to the backend
   const [userPassword, setUserPassword] = useState({
     CODPES: "",
     NOME: "",
@@ -23,6 +25,21 @@ const Profile = () => {
     EMAIL: "",
   });
 
+  // The function of this function (lol) is to receive every change in the form's input values and set in to the UserData by setUserData
+  const handleChange = (e) => {
+    // Get the name and the value of the input
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  // The function of this function (lol) is to receive every change in the form's input values and set in to the UserPassword by setUserPassword
+  const handleSetPassword = (e) => {
+    // Get the name and the value of the input
+    const { name, value } = e.target;
+    setUserPassword({ ...userPassword, [name]: value });
+  };
+
+  // useEffect responsible for decoding the token to get the ID of the user and using it as authorization to get the data of the user, setting it to the inputs of the form
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -54,6 +71,7 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  // If the user update his data, using axios to post
   const updateData = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -64,7 +82,6 @@ const Profile = () => {
       };
       try {
         const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
-        console.log(res);
       } catch (error) {
         console.error("Erro ao atualizar os dados:", error);
       }
@@ -86,16 +103,6 @@ const Profile = () => {
         console.error("Erro ao atualizar os dados:", error);
       }
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-  };
-
-  const handleSetPassword = (e) => {
-    const { name, value } = e.target;
-    setUserPassword({ ...userPassword, [name]: value });
   };
 
   return (

@@ -27,7 +27,7 @@ export default function App() {
   }, [token]);
 
   return (
-    <footer className="bg-neutral-100 text-center text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+    <footer className="bg-neutral-900 text-center text-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 lg:text-left">
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Nos encontre em outras redes sociais:</span>
@@ -170,10 +170,10 @@ export default function App() {
       </div>
 
       {/* <!--Copyright section--> */}
-      <div className="bg-neutral-200 p-6 text-center dark:bg-neutral-700">
+      <div className="bg-black p-6 text-center dark:bg-neutral-800">
         <span>© 2024 Copyright: </span>
         <a className="font-semibold text-neutral-600 dark:text-neutral-400" href="/">
-          Zabbixx Store
+          Zabbix Store
         </a>
       </div>
     </footer>

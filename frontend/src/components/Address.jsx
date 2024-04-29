@@ -6,6 +6,7 @@ import Inputs from "./fragments/Inputs";
 import axios from "axios";
 
 const Address = () => {
+  // Fields that are necessary to send, receive information to/from backend
   const [info, setInfo] = useState({
     CODPES: "",
     CODEND: "",
@@ -17,9 +18,11 @@ const Address = () => {
     NUMERO: "",
     DESCRICAO: "",
   });
+
   const [cep, setCEP] = useState("");
-  const [cepInvalido, setCepInvalido] = useState(false);
   const [enderecos, setEnderecos] = useState([]);
+  const [cepInvalido, setCepInvalido] = useState(false);
+
   const [enderecoEditado, setEnderecoEditado] = useState(null);
 
   const handleChange = (e) => {
@@ -45,11 +48,13 @@ const Address = () => {
     return () => clearTimeout(timer);
   }, [cep]);
 
+  // Checking the CEP that the user typed using viaCEP api
   const catchCEP = async () => {
     try {
       const res = await axios.get(`https://viacep.com.br/ws/${cep.replace(/[^0-9]/g, "")}/json/`);
       const data = res.data;
 
+      // If it was a valid CEP, saving it into info
       setInfo((prevInfo) => ({
         ...prevInfo,
         CEP: data.cep || "",
@@ -64,6 +69,7 @@ const Address = () => {
     }
   };
 
+  // Fetching user data from backend using JWT token to auth, and if there are address, setting it into Enderecos
   const fetchData = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -84,6 +90,7 @@ const Address = () => {
     }
   };
 
+  // Every reload, execute fetchData
   useEffect(() => {
     fetchData();
   }, []);
@@ -99,13 +106,14 @@ const Address = () => {
         } else {
           const res = await axios.post("http://localhost:3000/endereco/cadastrar", info, config);
           setEnderecos([...enderecos, info]);
-          console.log(res);
         }
       } catch (error) {
         console.error("Erro ao atualizar os dados:", error);
       }
     }
   };
+
+  // Manipulating already created address:
 
   const handleDelete = (index) => {
     const newEnderecos = [...enderecos];

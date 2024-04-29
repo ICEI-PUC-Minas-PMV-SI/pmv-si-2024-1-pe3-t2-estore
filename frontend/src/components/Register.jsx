@@ -3,17 +3,22 @@ import { useNavigate } from "react-router-dom";
 import Inputs from "./fragments/Inputs";
 import axios from "axios";
 import "../css/register.css";
-import RegisterImg from "../assets/register.svg";
 
 const Register = () => {
+  // Using navigate to redirect users with expired token
   const navigate = useNavigate();
+  // Using useState for setting a message in a lot of uses cases (login succeded, login error, email already registered....)
   const [message, setMessage] = useState(null);
+  // Showing that everything in registering worked fine
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Our route to register users, hitting nestJS
   const REGISTER_URL = "http://localhost:3000/registro";
 
+  // getting the JWT Token from localstorage, checking if a valid user is trying to access /register again. Same for /login
   const retrievetoken = localStorage.getItem("token");
 
+  // Checking if the token isnt expired, if not, redirect to the home page (user is already logged in)
   useEffect(() => {
     if (retrievetoken) {
       try {
@@ -28,6 +33,7 @@ const Register = () => {
     }
   }, [retrievetoken, navigate]);
 
+  // Creating some inputs to receive and manipulate data, it will also used to send to the backend
   const [formData, setFormData] = useState({
     NOME: "",
     SOBRENOME: "",
@@ -37,16 +43,21 @@ const Register = () => {
     SENHA: "",
   });
 
+  // The function of this function (lol) is to receive every change in the form's input values and set in to the formData by setFormData
   const handleChange = (e) => {
+    // Get the name and the value of the input
     const { name, value } = e.target;
+    // set into the formData by comparing its name and allocating the value
     setFormData({ ...formData, [name]: value });
   };
 
+  // Function triggered when hitting submit form button, responsible for posting, using axios, if success, redirect to the /login screen
+  // if it came back with 409, the email exist, so its not possible to overwrite. Else, its a unknown error
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await axios.post(REGISTER_URL, formData);
+      // if the response of post is valid (200). if not, show errors
       if ((res.status = 200)) {
         setIsSuccess(true);
         setMessage("Cadastrado com sucesso!");
@@ -55,6 +66,7 @@ const Register = () => {
         }, 1000);
       }
     } catch (error) {
+      // showing email already exists error, or another type of error
       if ((error.response.status = 409)) {
         setMessage("Email já cadastrado.");
       } else {

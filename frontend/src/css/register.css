@@ -81,7 +81,7 @@ input[type="submit"] {
 }
 
 .form-register h1 {
-  font-size: 6vh;
+  font-size: 4vh;
   font-weight: 800;
 }
 
@@ -179,3 +179,5 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+

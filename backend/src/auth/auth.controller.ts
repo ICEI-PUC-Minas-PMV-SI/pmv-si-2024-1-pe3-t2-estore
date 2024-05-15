@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Patch, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto, RegistroDto } from './dto/login.dto';
 
@@ -11,7 +11,7 @@ export class AuthController {
     return this.authService.login(body);
   }
 
-  @Post('/alterar/senha')
+  @Patch('/alterar/senha')
   alterar(@Body() body: LoginDto) {
     return this.authService.alteraLogin(body);
   }

@@ -25,7 +25,7 @@ export class EnderecoService {
         );
       }
       const buscaEndereco = await this.prisma.endereco.findFirst({
-        where: { DESCRICAO: body.DESCRICAO },
+        where: { DESCRICAO: body.DESCRICAO, CODPES: body.CODPES },
       });
 
       if (buscaEndereco) {
@@ -80,6 +80,28 @@ export class EnderecoService {
         },
       });
       return atualizar;
+    } catch (error) {
+      throw new HttpException(error.message, error.status);
+    }
+  }
+
+  async deletar(body: any) {
+    try {
+      const buscaEndereco = await this.prisma.endereco.findFirst({
+        where: { CODEND: body.CODEND },
+      });
+
+      if (!buscaEndereco) {
+        throw new HttpException(
+          'Endereço não encontrado',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      const deletar = await this.prisma.endereco.delete({
+        where: { CODEND: body.CODEND },
+      });
+      return deletar;
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }

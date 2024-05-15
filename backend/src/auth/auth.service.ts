@@ -42,6 +42,25 @@ export class AuthService {
     }
   }
 
+  async alteraLogin(body: LoginDto) {
+    try {
+      const procuraUsu = await this.prisma.login.findFirst({
+        where: { EMAIL: body.EMAIL },
+      });
+
+      if (!procuraUsu) {
+        throw new HttpException('Usuario não encontrado', HttpStatus.NOT_FOUND);
+      }
+
+      return await this.prisma.login.update({
+        where: { CODUSU: procuraUsu.CODUSU },
+        data: { SENHA: body.SENHA },
+      });
+    } catch (error) {
+      throw new HttpException(error.message, error.status);
+    }
+  }
+
   async registro(body: RegistroDto) {
     try {
       const procuraUsu = await this.prisma.login.findFirst({

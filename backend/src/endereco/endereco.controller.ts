@@ -1,4 +1,12 @@
-import { Body, Controller, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { EnderecoService } from './endereco.service';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -20,5 +28,10 @@ export class EnderecoController {
   @Patch('/atualizar')
   atualizar(@Body() body: AtualizarEnderecoDto) {
     return this.enderecoService.atualizar(body);
+  }
+
+  @Delete('/deletar')
+  deletar(@Query() body: any) {
+    return this.enderecoService.deletar(body);
   }
 }

@@ -4,7 +4,6 @@
   width: 60vw;
   height: auto;
   justify-content: space-between;
-  margin-top: 300px;
   padding-bottom: 50px;
 }
 
@@ -20,13 +19,11 @@
   flex-direction: column;
   width: 50%;
   margin-right: 100px;
-  margin-top: 150px;
 }
 
 .input-column2 {
   display: flex;
   width: 50%;
-  margin-top: 150px;
   flex-direction: column;
 }
 
@@ -116,4 +113,34 @@
 .icon-container span {
   cursor: pointer;
   margin: 8px;
+}
+
+@media (max-width: 900px) {
+  #form-address {
+    flex-direction: column;
+    margin: 0;
+    padding: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-address-inputs {
+    width: 75%;
+  }
+
+  .input-column1 {
+    width: 140%;
+    margin: 0;
+  }
+
+  .input-column2 {
+    width: 140%;
+    margin: 0;
+  }
+
+  .endereco-container {
+    padding: 20px;
+    width: 100%;
+  }
 }

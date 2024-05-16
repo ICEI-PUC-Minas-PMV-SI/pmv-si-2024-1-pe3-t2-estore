@@ -87,8 +87,10 @@ export class EnderecoService {
 
   async deletar(body: any) {
     try {
+      const codend = parseInt(body.CODEND);
+
       const buscaEndereco = await this.prisma.endereco.findFirst({
-        where: { CODEND: body.CODEND },
+        where: { CODEND: codend },
       });
 
       if (!buscaEndereco) {
@@ -99,7 +101,7 @@ export class EnderecoService {
       }
 
       const deletar = await this.prisma.endereco.delete({
-        where: { CODEND: body.CODEND },
+        where: { CODEND: codend },
       });
       return deletar;
     } catch (error) {

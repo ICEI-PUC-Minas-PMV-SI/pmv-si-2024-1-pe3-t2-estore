@@ -10,7 +10,8 @@ const Cart = () => {
       <div className="cart-container">
         <div className="left-cart-container">
           <div className="product-cart">
-            <p>OI</p>
+            <p>Casaco Masculino</p>
+            <p>Tamanho: P</p>
           </div>
         </div>
         <div className="right-cart-container">

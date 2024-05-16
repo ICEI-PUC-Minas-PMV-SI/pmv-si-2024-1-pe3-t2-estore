@@ -1,26 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-4,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+.account-page {
+  background-color: whitesmoke;
+  margin-bottom: 10px;
+  height: auto;
+}
+
 .profile-container {
   display: flex;
-  margin-top: 250px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: auto;
 }
 
 #form-profile {
   display: flex;
   justify-content: center;
-  width: 40%;
-  height: -50%;
-  align-items: left;
+  align-items: flex-start;
   flex-direction: column;
-  margin-left: 30px;
+  width: 40%;
   margin-right: 50px;
-  margin-top: 100px;
+  margin-top: 0;
 }
 
 #form-profile label {
-  align-items: left;
   font-family: "Montserrat";
   font-weight: 600;
   font-size: 20px;
@@ -49,6 +52,7 @@
   align-items: center;
   width: 50%;
   padding-left: 30px;
+  padding-right: 30px; /* Adicionado preenchimento à direita */
 }
 
 #form-password-profile h1 {
@@ -101,47 +105,37 @@
   border-radius: 2px;
   align-items: center;
   transition: 0.1s ease-in-out;
+  margin-bottom: 30px;
 }
 
 .input-profile-password input:hover {
   color: white;
   background-color: rgba(35, 34, 34, 0.76);
 }
-#form-password-profile {
-  font-size: 20px;
-}
-
-#form-password-profile label {
-  margin-top: 30px;
-}
-
-#form-password-profile input:focus {
-  background-color: rgba(128, 128, 128, 0.145);
-}
 
 @media (max-width: 900px) {
   .profile-container {
-    margin-top: 0;
     flex-direction: column;
+    align-items: center;
+    margin-top: 0;
   }
 
   #form-profile {
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    margin: 0;
-    padding: 30px;
+    margin-right: 0;
+    margin-bottom: 30px;
+    padding: 0 30px;
   }
 
   #form-password-profile {
     width: 100%;
-    justify-content: center;
-    align-items: center;
     padding: 30px;
   }
+
   .input-profile input {
     width: 100%;
   }
+
   .input-profile-password input {
     width: 100%;
   }

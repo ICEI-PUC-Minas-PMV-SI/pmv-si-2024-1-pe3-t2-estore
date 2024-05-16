@@ -1,7 +1,7 @@
 .account-page {
   background-color: whitesmoke;
   margin-bottom: 10px;
-  height: 110vh;
+  height: 100vh;
 }
 
 .header-account {
@@ -19,13 +19,13 @@
 .header-container-account {
   display: flex;
   width: 100%;
-  height: 200px;
+  height: auto;
 }
 
 .left-container-account {
   display: flex;
   padding: 20px;
-  height: 300px;
+  height: auto;
   margin-left: 20px;
   width: 20%;
   flex-direction: column;
@@ -60,9 +60,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Alinhe os itens no topo */
   width: 70%;
-  height: 100%;
+  overflow-y: auto; /* Adicione uma barra de rolagem vertical se necessário */
 }
 
 @media (max-width: 900px) {

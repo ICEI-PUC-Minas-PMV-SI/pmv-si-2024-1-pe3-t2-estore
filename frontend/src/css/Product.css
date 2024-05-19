@@ -1,0 +1,91 @@
+/* PRODUCTS CARD */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.4s;
+  background-color: #fff;
+  overflow: hidden;
+  max-width: 300px;
+  margin: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.product-card:hover {
+  box-shadow: 15px 15px black;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-info h1 {
+  font-size: 1.1em;
+  margin: 10px 0;
+  color: #333;
+}
+
+.product-info h1:first-of-type {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.product-info h1:last-of-type {
+  font-size: 1.3em;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.product-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.buy-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 70%;
+}
+
+.buy-button:hover {
+  background-color: #0056b3;
+}
+
+.shopping-cart-icon {
+  transition: transform 0.3s;
+}
+
+.product-cart .shopping-cart-icon:hover {
+  transform: scale(1.7);
+}
+
+/* LIST OF PRODUCTS IN DASHBOARD */
+
+.list-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espaçamento entre os produtos */
+  padding: 20px;
+}

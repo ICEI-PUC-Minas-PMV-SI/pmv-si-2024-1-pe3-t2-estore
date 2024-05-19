@@ -28,7 +28,7 @@ input[type="submit"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 45%;
   padding: 32px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
@@ -69,6 +69,15 @@ input[type="submit"] {
   border-radius: 2px;
   background-color: whitesmoke;
   width: calc(100% - 22px);
+}
+
+.error-border {
+  border: 2px solid red;
+}
+
+.password-error {
+  color: red;
+  margin-top: 5px;
 }
 
 .aside-register {
@@ -179,5 +188,3 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-

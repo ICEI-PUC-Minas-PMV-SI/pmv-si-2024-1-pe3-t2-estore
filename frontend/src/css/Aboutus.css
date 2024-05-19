@@ -1,0 +1,59 @@
+.containerus {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: rgba(220, 220, 220, 0.561);
+}
+
+.titleus h1 {
+  font-size: 70px;
+  padding: 30px;
+  background-color: rgba(220, 220, 220, 0.561);
+  color: black;
+}
+
+.container-person {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.containerimage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.containertext h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.containertext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.containertext h1 {
+  color: black;
+  font-size: 20px;
+}
+
+.personimg {
+  width: 250px;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  border-radius: 1000px;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .container-person {
+    flex-direction: column;
+  }
+}

@@ -1,65 +1,25 @@
 import React from "react";
-import Gabrielpng from "../assets/Gabriel.png"
-import Lucaspng from "../assets/Lucas.jpeg"
-import Pedropng from "../assets/Pedro.png"
-import Victorpng from "../assets/Victor.png"
+import "../css/Aboutus.css";
+import Us from "./fragments/Us";
+import Gabrielpng from "../assets/Gabriel.png";
+import Lucaspng from "../assets/Lucas.jpeg";
+import Pedropng from "../assets/Pedro.png";
+import Victorpng from "../assets/Victor.png";
 const Aboutus = () => {
   return (
     <>
       <div className="titleus">
-        <h1>  Sobre nós  </h1>
+        <h1> Sobre nós </h1>
       </div>
 
       <div className="containerus">
-
-        <div className="container-person">
-          <div className="containerimage">
-            <img className="personimg" src={Lucaspng} alt="" />
-          </div>
-          <div className="containertext">
-            <h1> blablabla  </h1>
-          </div>
-        </div>
-
-        <div className="container-person">
-          
-          <div className="containertext">
-            <h1> blablabla  </h1>
-          </div>
-          <div className="containerimage">
-            <img className="personimg" src={Pedropng} alt="" />
-          </div>
-        </div>
-
-
-
-        <div className="container-person">
-          <div className="containerimage">
-            <img className="personimg" src={Victorpng} alt="" />
-          </div>
-          <div className="containertext">
-            <h1> blablabla  </h1>
-          </div>
-        </div>
-
-
-        <div className="container-person">
-          
-          <div className="containertext">
-            <h1> blablabla  </h1>
-          </div>
-          <div className="containerimage">
-            <img className="personimg" src={Gabrielpng} alt="" />
-          </div>
-        </div>
-
-
+        <Us personImage={Lucaspng} personText="Lucas"></Us>
+        <Us personImage={Victorpng} personText="Victor"></Us>
+        <Us personImage={Pedropng} personText="Pedro"></Us>
+        <Us personImage={Gabrielpng} personText="Gabriel"></Us>
       </div>
-
     </>
-
-  )
+  );
 };
-
 
 export default Aboutus;

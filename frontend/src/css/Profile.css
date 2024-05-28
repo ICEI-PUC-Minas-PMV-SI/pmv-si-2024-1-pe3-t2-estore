@@ -52,7 +52,8 @@
   align-items: center;
   width: 50%;
   padding-left: 30px;
-  padding-right: 30px; /* Adicionado preenchimento à direita */
+  padding-right: 30px;
+  gap: 20px;
 }
 
 #form-password-profile h1 {

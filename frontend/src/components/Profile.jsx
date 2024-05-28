@@ -5,7 +5,6 @@ import "../css/Profile.css";
 import axios from "axios";
 
 const Profile = () => {
-  // Creating some inputs to receive and manipulate profile account data, it will also used to send to the backend
   const [userData, setUserData] = useState({
     CODPES: "",
     NOME: "",
@@ -15,31 +14,24 @@ const Profile = () => {
     EMAIL: "",
   });
 
-  // Creating some inputs to receive and manipulate password account data, it will also used to send to the backend
   const [userPassword, setUserPassword] = useState({
-    CODPES: "",
-    NOME: "",
-    SOBRENOME: "",
-    CPF: "",
-    TELEFONE: "",
     EMAIL: "",
+    SENHA: "",
+    CONFIRMAR_SENHA: "",
   });
 
-  // The function of this function (lol) is to receive every change in the form's input values and set in to the UserData by setUserData
+  const [passwordError, setPasswordError] = useState("");
+
   const handleChange = (e) => {
-    // Get the name and the value of the input
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
 
-  // The function of this function (lol) is to receive every change in the form's input values and set in to the UserPassword by setUserPassword
   const handleSetPassword = (e) => {
-    // Get the name and the value of the input
     const { name, value } = e.target;
     setUserPassword({ ...userPassword, [name]: value });
   };
 
-  // useEffect responsible for decoding the token to get the ID of the user and using it as authorization to get the data of the user, setting it to the inputs of the form
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -51,6 +43,11 @@ const Profile = () => {
               Authorization: `Bearer ${token}`,
             },
           };
+
+          setUserPassword({
+            ...userPassword,
+            EMAIL: decodedToken.EMAIL,
+          });
 
           const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
           const user = response.data;
@@ -71,8 +68,8 @@ const Profile = () => {
     fetchData();
   }, []);
 
-  // If the user update his data, using axios to post
-  const updateData = async () => {
+  const updateData = async (e) => {
+    e.preventDefault();
     const token = localStorage.getItem("token");
     if (token) {
       const config = {
@@ -82,25 +79,28 @@ const Profile = () => {
       };
       try {
         const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
+        console.log("Dados atualizados com sucesso:", res);
       } catch (error) {
         console.error("Erro ao atualizar os dados:", error);
       }
     }
   };
 
-  const updatePassword = async () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      try {
-        const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
-        console.log(res);
-      } catch (error) {
-        console.error("Erro ao atualizar os dados:", error);
+  const updatePassword = async (e) => {
+    if (userPassword.SENHA !== userPassword.CONFIRMAR_SENHA) {
+      setPasswordError("As senhas não coincidem. Por favor, verifique.");
+      e.preventDefault();
+      return;
+    } else {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const res = await axios.patch("http://localhost:3000/alterar/senha", userPassword);
+          console.log("Senha atualizada com sucesso:", res);
+          setPasswordError("");
+        } catch (error) {
+          console.error("Erro ao atualizar a senha:", error);
+        }
       }
     }
   };
@@ -120,7 +120,8 @@ const Profile = () => {
       <form id="form-password-profile" onSubmit={updatePassword}>
         <h1>Deseja trocar sua senha?</h1>
         <Inputs label="Nova senha:" type="password" name="SENHA" id="senha-profile" onChange={handleSetPassword} required />
-        <Inputs label="Confirme sua nova senha::" type="password" name="CONFIRMAR_SENHA" id="senha2-profile" required />
+        <Inputs label="Confirme sua nova senha:" type="password" name="CONFIRMAR_SENHA" id="senha2-profile" onChange={handleSetPassword} required />
+        {passwordError && <p style={{ color: "red", fontWeight: "bold" }}>{passwordError}</p>}
         <div className="input-profile-password">
           <input type="submit" value="Cadastrar nova senha" />
         </div>

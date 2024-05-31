@@ -65,7 +65,7 @@ model Produtos {
   ESTOQUE   Float
 
   VALOR      Float
-  DESCONTO   Float
+  DESCONTO   Float?
   CATEGORIAS Categorias? @relation(fields: [CODCAT], references: [CODCAT])
   CODCAT     Int?
 

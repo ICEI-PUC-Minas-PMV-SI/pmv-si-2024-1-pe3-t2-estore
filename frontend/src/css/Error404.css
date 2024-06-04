@@ -10,9 +10,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
   height: 100vh;
-  background-color: antiquewhite;
   width: 100%;
+  background-color: #0d6759;
+}
+
+.principal-screen {
+  color: black;
+  background-color: whitesmoke;
+  padding: 3px;
+  border-radius: 2px;
 }
 
 .img-error {

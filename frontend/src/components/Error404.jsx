@@ -8,7 +8,12 @@ const Error404 = () => {
     <div className="img_container-error">
       <img className="img-error" src={ErroSVG} alt="Erro 404" />
       <p className="p-error">
-        Você achou uma página que não existe. <br /> Deseja voltar para a <Link to="/">tela principal</Link>?
+        Você achou uma página que não existe. <br /> Deseja voltar para a{" "}
+        <Link to="/">
+          <a className="principal-screen" href="/dashboard">
+            tela principal ?
+          </a>
+        </Link>
       </p>
     </div>
   );

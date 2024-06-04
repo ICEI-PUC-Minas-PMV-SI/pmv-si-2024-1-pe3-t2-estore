@@ -1,4 +1,4 @@
-/* PRODUCTS CARD */
+@import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap");
 
 .product-card {
   display: flex;
@@ -30,22 +30,24 @@
 
 .product-info {
   padding: 15px;
-  text-align: center;
+  text-align: left;
+  width: 100%;
 }
 
 .product-info h1 {
-  font-size: 1.1em;
+  font-size: 1.5em;
   margin: 10px 0;
-  color: #333;
+  color: #706969;
 }
 
 .product-info h1:first-of-type {
-  font-size: 1.2em;
+  font-family: "Reddit Mono", monospace;
+  font-size: 1.5em;
   font-weight: bold;
 }
 
 .product-info h1:last-of-type {
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: #007bff;
   cursor: pointer;
 }
@@ -73,14 +75,14 @@
 }
 
 .shopping-cart-icon {
+  padding: 15px;
+  height: 1.5em;
   transition: transform 0.3s;
 }
 
 .product-cart .shopping-cart-icon:hover {
-  transform: scale(1.7);
+  transform: scale(1.3);
 }
-
-/* LIST OF PRODUCTS IN DASHBOARD */
 
 .list-products {
   display: flex;

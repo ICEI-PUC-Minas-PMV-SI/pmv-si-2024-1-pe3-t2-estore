@@ -15,21 +15,23 @@ import { ProdutoService } from './produto.service';
 
 @Controller('produto')
 @ApiTags('Produto')
-@UseGuards(AuthGuard)
 @ApiBearerAuth()
-export class EnderecoController {
+export class ProdutoController {
   constructor(private readonly produtoService: ProdutoService) {}
 
+  @UseGuards(AuthGuard)
   @Post('/cadastrar')
   cadastrar(@Body() body: any) {
     return this.produtoService.cadastrar(body);
   }
 
+  @UseGuards(AuthGuard)
   @Patch('/atualizar')
   atualizar(@Body() body: any) {
     return this.produtoService.atualizar(body);
   }
 
+  @UseGuards(AuthGuard)
   @Delete('/deletar')
   deletar(@Query() body: any) {
     return this.produtoService.remover(body);

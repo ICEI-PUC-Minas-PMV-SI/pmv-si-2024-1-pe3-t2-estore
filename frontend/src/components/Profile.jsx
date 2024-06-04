@@ -93,8 +93,10 @@ const Profile = () => {
       return;
     } else {
       const token = localStorage.getItem("token");
+      e.preventDefault();
       if (token) {
         try {
+          delete userPassword.CONFIRMAR_SENHA;
           const res = await axios.patch("http://localhost:3000/alterar/senha", userPassword);
           console.log("Senha atualizada com sucesso:", res);
           setPasswordError("");

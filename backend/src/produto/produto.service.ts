@@ -57,14 +57,12 @@ export class ProdutoService {
 
   async cadastrar(body: any) {
     try {
-      const categoria1 = await this.prisma.categorias.findFirst({
-        where: {},
-      });
-
-      if (!categoria1) {
-        const categorias = ['MASCULINO', 'FEMININO'];
-        for (let index = 0; index < categorias.length; index++) {
-          const element = categorias[index];
+      const categorias = ['MASCULINO', 'FEMININO'];
+      for (let element of categorias) {
+        const existingCategory = await this.prisma.categorias.findFirst({
+          where: { CATEGORIA: element },
+        });
+        if (!existingCategory) {
           await this.prisma.categorias.create({
             data: { CATEGORIA: element },
           });
@@ -77,17 +75,20 @@ export class ProdutoService {
 
       if (!categoria) {
         throw new HttpException(
-          'Categoria não encontrada, tente "MASCULINO" ou "FEMININO" ',
+          'Categoria não encontrada, tente "MASCULINO" ou "FEMININO"',
           HttpStatus.NOT_FOUND,
         );
       }
 
       const buscaproduto = await this.prisma.produtos.findFirst({
-        where: { PRODUTO: body.PRODUTO, CATEGORIAS: body.CATEGORIA },
+        where: {
+          PRODUTO: body.PRODUTO,
+          CODCAT: categoria.CODCAT,
+        },
       });
 
       if (buscaproduto) {
-        throw new HttpException('Produto já cadastrado', HttpStatus.NOT_FOUND);
+        throw new HttpException('Produto já cadastrado', HttpStatus.CONFLICT);
       }
 
       const cadastrar = await this.prisma.produtos.create({
@@ -103,7 +104,7 @@ export class ProdutoService {
       });
       return cadastrar;
     } catch (error) {
-      throw new HttpException(error.message, error.status);
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

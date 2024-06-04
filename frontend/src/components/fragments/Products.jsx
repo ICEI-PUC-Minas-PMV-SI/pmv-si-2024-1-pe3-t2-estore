@@ -11,7 +11,7 @@ const Products = ({ image, title, price }) => {
       </div>
       <div className="product-info">
         <h1>{title}</h1>
-        <h1>{price}</h1>
+        <h1>R$: {price}</h1>
         <div className="product-cart">
           <button className="buy-button">Comprar</button>
           <FontAwesomeIcon icon={faShoppingCart} className="shopping-cart-icon" />

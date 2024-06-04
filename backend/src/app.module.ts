@@ -7,8 +7,10 @@ import { PrismaService } from './services/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { EnderecoService } from './endereco/endereco.service';
 import { PessoaService } from './pessoa/pessoa.service';
+import { ProdutoService } from './produto/produto.service';
 import { PessoaController } from './pessoa/pessoa.controller';
 import { EnderecoController } from './endereco/endereco.controller';
+import { ProdutoController } from './produto/produto.controller';
 
 @Module({
   imports: [],
@@ -17,6 +19,7 @@ import { EnderecoController } from './endereco/endereco.controller';
     AuthController,
     PessoaController,
     EnderecoController,
+    ProdutoController,
   ],
   providers: [
     AppService,
@@ -25,6 +28,7 @@ import { EnderecoController } from './endereco/endereco.controller';
     JwtService,
     EnderecoService,
     PessoaService,
+    ProdutoService,
   ],
 })
 export class AppModule {}

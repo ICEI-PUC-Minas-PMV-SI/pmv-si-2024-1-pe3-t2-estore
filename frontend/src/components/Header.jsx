@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiUser, FiLogOut } from "react-icons/fi";
-import { MdShoppingBasket } from "react-icons/md";
+import { MdShoppingBasket, MdAdminPanelSettings } from "react-icons/md";
 
 function Header() {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [token, setToken] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const storedToken = localStorage.getItem("token");
   useEffect(() => {
@@ -53,6 +54,8 @@ function Header() {
           localStorage.removeItem("token");
           setToken(null);
         }
+        // Verifica se o usuário é administrador
+        setIsAdmin(decodedToken.PERMISSAO === "ADMINISTRADOR");
       } catch (error) {
         console.error("Error decoding token:", error);
       }
@@ -100,6 +103,13 @@ function Header() {
                   <FiUser className="inline mr-1" /> Conta
                 </Link>
               </a>
+              {isAdmin && (
+                <a className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={closeHeader}>
+                  <Link to="/admin">
+                    <MdAdminPanelSettings className="inline mr-1" /> Admin
+                  </Link>
+                </a>
+              )}
               <a href="/" className="font-medium text-black-600 mr-5 link-mobile-margin link-with-underline" onClick={logout}>
                 <FiLogOut className="inline mr-1" /> Sair
               </a>

@@ -72,7 +72,6 @@ const Address = () => {
       try {
         const decodedToken = jwtDecode(token);
         const config = { headers: { Authorization: `Bearer ${token}` } };
-
         const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
         const user = response.data;
 
@@ -110,6 +109,9 @@ const Address = () => {
             DESCRICAO: "",
           }));
           setCEP("");
+
+          // Atualizar a lista de endereços com o endereço editado
+          setAddresses((prevAddresses) => prevAddresses.map((address) => (address.CODEND === editedAddress.CODEND ? { ...address, ...addressInfo } : address)));
         } else {
           const res = await axios.post("http://localhost:3000/endereco/cadastrar", addressInfo, config);
           setAddresses([...addresses, addressInfo]);
@@ -147,9 +149,9 @@ const Address = () => {
 
   const handleEdit = (address) => {
     setEditedAddress(address);
-    setAddressInfo({
-      ...addressInfo,
-      CODPES: addressInfo.CODPES,
+    setAddressInfo((prevAddressInfo) => ({
+      ...prevAddressInfo,
+      CODPES: prevAddressInfo.CODPES,
       CODEND: address.CODEND,
       CEP: address.CEP,
       RUA: address.RUA,
@@ -158,7 +160,7 @@ const Address = () => {
       COMPLEMENTO: address.COMPLEMENTO,
       NUMERO: address.NUMERO,
       DESCRICAO: address.DESCRICAO,
-    });
+    }));
     setCEP(address.CEP);
   };
 
@@ -227,5 +229,4 @@ const Address = () => {
     </div>
   );
 };
-
 export default Address;

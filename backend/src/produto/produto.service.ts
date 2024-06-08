@@ -8,7 +8,7 @@ export class ProdutoService {
   async buscar(body: any) {
     try {
       const buscaProduto = await this.prisma.produtos.findFirst({
-        where: { CODPROD: body.CODPROD },
+        where: { CODPROD: +body.CODPROD },
         include: { CATEGORIAS: true },
       });
 

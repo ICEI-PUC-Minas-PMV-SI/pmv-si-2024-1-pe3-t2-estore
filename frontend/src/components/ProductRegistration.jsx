@@ -45,6 +45,7 @@ const ProductRegistration = () => {
       const registerProduct = await axios.post(url_register_product, product, config);
       console.log(registerProduct);
     } catch (error) {
+      e.preventDefault();
       console.error("Erro ao cadastrar produto:", error);
     }
     console.log(product);

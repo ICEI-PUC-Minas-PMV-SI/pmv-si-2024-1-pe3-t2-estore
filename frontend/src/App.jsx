@@ -11,6 +11,7 @@ import Aboutus from "./components/Aboutus";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Likedproducts from "./components/Likedproducts";
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/favorites" element={<Likedproducts />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/product" element={<Product />} />

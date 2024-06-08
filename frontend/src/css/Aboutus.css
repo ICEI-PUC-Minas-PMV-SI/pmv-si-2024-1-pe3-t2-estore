@@ -1,59 +1,57 @@
-.containerus {
+.aboutus-container {
   display: flex;
   flex-direction: column;
-  height: auto;
   background-color: rgba(220, 220, 220, 0.561);
+  padding: 30px;
 }
 
-.titleus h1 {
+.aboutus-title h1 {
   font-size: 70px;
-  padding: 30px;
-  background-color: rgba(220, 220, 220, 0.561);
   color: black;
+  margin-bottom: 20px;
 }
 
-.container-person {
+.person-container {
   display: flex;
   align-items: center;
-  padding: 30px;
+  margin-bottom: 30px;
 }
 
-.containerimage {
+.person-image-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.person-image {
+  width: 250px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  margin-bottom: 20px;
+}
+
+.person-text-container {
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
 }
 
-.containertext h1 {
-  font-size: 40px;
+.person-name {
+  font-size: 30px;
   font-weight: 700;
-}
-
-.containertext {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-}
-
-.containertext h1 {
   color: black;
-  font-size: 20px;
 }
 
-.personimg {
-  width: 250px;
-  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-  border-radius: 1000px;
-  margin-bottom: 20px;
-  align-items: center;
-  justify-content: center;
+.person-description {
+  font-size: 20px;
+  color: black;
 }
 
 @media (max-width: 900px) {
-  .container-person {
+  .person-container {
     flex-direction: column;
   }
 }

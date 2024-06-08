@@ -39,7 +39,6 @@ const ProductRegistration = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
       const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };

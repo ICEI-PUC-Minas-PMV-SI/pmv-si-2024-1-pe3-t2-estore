@@ -111,7 +111,7 @@ export class ProdutoService {
   async atualizar(body: any) {
     try {
       const buscaproduto = await this.prisma.produtos.findFirst({
-        where: { PRODUTO: body.PRODUTO },
+        where: { CODPROD: +body.CODPROD },
       });
 
       if (!buscaproduto) {
@@ -127,13 +127,14 @@ export class ProdutoService {
 
         if (!categoria) {
           throw new HttpException(
-            'Categoria não encontrada, tente "MASCULINO" ou "FEMININO" ',
+            'Categoria não encontrada, tente "MASCULINO" ou "FEMININO"',
             HttpStatus.NOT_FOUND,
           );
         }
         codcat = categoria.CODCAT;
       }
-      const cadastrar = await this.prisma.produtos.update({
+
+      const atualizar = await this.prisma.produtos.update({
         where: { CODPROD: body.CODPROD },
         data: {
           PRODUTO: body.PRODUTO,
@@ -145,7 +146,7 @@ export class ProdutoService {
           DESCONTO: body.DESCONTO,
         },
       });
-      return cadastrar;
+      return atualizar;
     } catch (error) {
       throw new HttpException(error.message, error.status);
     }
@@ -154,7 +155,7 @@ export class ProdutoService {
   async remover(body: any) {
     try {
       const buscaProduto = await this.prisma.produtos.findFirst({
-        where: { CODPROD: body.CODPROD },
+        where: { CODPROD: +body.CODPROD },
       });
 
       if (!buscaProduto) {
@@ -162,7 +163,7 @@ export class ProdutoService {
       }
 
       return await this.prisma.produtos.delete({
-        where: { CODPROD: body.CODPROD },
+        where: { CODPROD: +body.CODPROD },
       });
     } catch (error) {
       throw new HttpException(error.message, error.status);

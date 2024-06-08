@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { ClipLoader } from "react-spinners";
 import Sustentavel from "../assets/sustentabilidade.jpg";
+import { PiShoppingCartFill } from "react-icons/pi";
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
+import { css } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-
 import "../css/ProductDetails.css";
 
 const ProductDetails = () => {
@@ -13,6 +17,42 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState("");
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
+  const [token, setToken] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [editableProduct, setEditableProduct] = useState({});
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: black;
+  `;
+
+  const spinnerContainerStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  };
+
+  const storedToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (storedToken) {
+      try {
+        const decodedToken = jwtDecode(storedToken);
+        const expirationTime = decodedToken.exp * 1000;
+        if (Date.now() > expirationTime) {
+          localStorage.removeItem("token");
+          setToken(null);
+        }
+        setIsAdmin(decodedToken.PERMISSAO === "ADMINISTRADOR");
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [storedToken]);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -47,8 +87,83 @@ const ProductDetails = () => {
     setShowAddToCartMessage(false);
   };
 
+  const handleEditClick = () => {
+    setEditableProduct({ ...product, CODPROD: parseInt(productId, 10) }); // Converte CODPROD para inteiro
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditableProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditableProduct((prevProduct) => ({
+          ...prevProduct,
+          IMAGEM: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSaveChanges = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const response = await axios.patch(
+        `http://localhost:3000/produto/atualizar`,
+        {
+          ...editableProduct,
+          CODPROD: parseInt(editableProduct.CODPROD, 10),
+        },
+        config
+      );
+      setProduct(response.data);
+      setIsPopupOpen(false);
+    } catch (error) {
+      console.error("Erro ao atualizar o produto:", error);
+    }
+  };
+
+  const handleConfirmDeleteProduct = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleCancelDeleteProduct = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleDeleteProduct = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      await axios.delete(`http://localhost:3000/produto/deletar?CODPROD=${parseInt(productId, 10)}`, config);
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Erro ao excluir o produto:", error);
+    }
+  };
+
   if (loading) {
-    return <div>Carregando...</div>;
+    return (
+      <div style={spinnerContainerStyle}>
+        <ClipLoader color={"#000"} loading={loading} css={override} size={150} />
+      </div>
+    );
   }
 
   if (!product) {
@@ -83,7 +198,22 @@ const ProductDetails = () => {
           </div>
 
           <form className="submit-producttt" onSubmit={handleBuy}>
-            <input type="submit" id="submit-buy-product" value="Comprar" />
+            <button type="submit" id="submit-buy-product" className="flex items-center">
+              <PiShoppingCartFill className="inline mr-1" />
+              Comprar
+            </button>
+            {isAdmin && (
+              <>
+                <button type="button" id="submit-edit-product" className="admin-buttons" onClick={handleEditClick}>
+                  <FaPencilAlt className="inline mr-1" />
+                  Atualizar
+                </button>
+                <button type="button" id="submit-delete-product" className="admin-buttons" onClick={handleConfirmDeleteProduct}>
+                  <FaTrash className="inline mr-1" />
+                  Excluir
+                </button>
+              </>
+            )}
           </form>
         </div>
       </div>
@@ -100,6 +230,47 @@ const ProductDetails = () => {
           </p>
         </div>
       </div>
+
+      {showDeleteConfirmation && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Confirmar exclusão</h2>
+            <p>Tem certeza de que deseja excluir este produto?</p>
+            <div className="popup-buttons">
+              <button onClick={handleDeleteProduct}>Sim</button>
+              <button onClick={handleCancelDeleteProduct}>Não</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isPopupOpen && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Editar Produto</h2>
+            <label>
+              Nome:
+              <input type="text" name="PRODUTO" value={editableProduct.PRODUTO || ""} onChange={handleInputChange} />
+            </label>
+            <label>
+              Descrição:
+              <input type="text" name="DESCRICAO" value={editableProduct.DESCRICAO || ""} onChange={handleInputChange} />
+            </label>
+            <label>
+              Preço:
+              <input type="text" name="VALOR" value={editableProduct.VALOR || ""} onChange={handleInputChange} />
+            </label>
+            <label>
+              Imagem URL:
+              <input type="file" name="IMAGEM" accept="image/*" onChange={handleImageChange} />
+            </label>
+            <div className="popup-buttons">
+              <button onClick={handleSaveChanges}>Salvar</button>
+              <button onClick={handlePopupClose}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

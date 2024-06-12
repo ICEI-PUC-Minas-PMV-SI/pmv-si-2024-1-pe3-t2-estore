@@ -14,6 +14,14 @@
   margin-bottom: 20px;
 }
 
+.image-product-side img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  max-height: 700px;
+}
+
 .cart-icon {
   position: absolute;
   top: 20px;
@@ -246,12 +254,12 @@
 }
 
 .popup-buttons button:first-of-type {
-  background-color: #4caf50;
+  background-color: #f44336;
   color: white;
 }
 
 .popup-buttons button:last-of-type {
-  background-color: #f44336;
+  background-color: #4caf50;
   color: white;
 }
 

@@ -6,6 +6,9 @@ import Inputs from "./fragments/Inputs";
 import axios from "axios";
 
 const Address = () => {
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Address
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const [addressInfo, setAddressInfo] = useState({
     CODPES: "",
     CODEND: "",
@@ -18,20 +21,14 @@ const Address = () => {
     DESCRICAO: "",
   });
 
-  const [cep, setCEP] = useState("");
   const [addresses, setAddresses] = useState([]);
-  const [invalidCep, setInvalidCep] = useState(false);
-
   const [editedAddress, setEditedAddress] = useState(null);
 
-  const handleChange = (e) => {
-    let value = e.target.value;
-    value = value.replace(/\D/g, "");
-    if (value.length > 5) {
-      value = value.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
-    }
-    setCEP(value);
-  };
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // CEP Functions
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  const [cep, setCEP] = useState("");
+  const [invalidCep, setInvalidCep] = useState(false);
 
   const isValidCEP = (cep) => {
     return cep.length === 9;
@@ -47,6 +44,9 @@ const Address = () => {
     return () => clearTimeout(timer);
   }, [cep]);
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Fetch CEP data based on viacep API
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const fetchCEP = async () => {
     try {
       const res = await axios.get(`https://viacep.com.br/ws/${cep.replace(/[^0-9]/g, "")}/json/`);
@@ -66,6 +66,21 @@ const Address = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // getting data from inputs and setting
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  const handleChange = (e) => {
+    let value = e.target.value;
+    value = value.replace(/\D/g, "");
+    if (value.length > 5) {
+      value = value.replace(/^(\d{5})(\d{0,3})/, "$1-$2");
+    }
+    setCEP(value);
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Fetch user data
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const fetchUserData = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -89,6 +104,10 @@ const Address = () => {
     fetchUserData();
   }, []);
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Submit user data function
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -109,8 +128,6 @@ const Address = () => {
             DESCRICAO: "",
           }));
           setCEP("");
-
-          // Atualizar a lista de endereços com o endereço editado
           setAddresses((prevAddresses) => prevAddresses.map((address) => (address.CODEND === editedAddress.CODEND ? { ...address, ...addressInfo } : address)));
         } else {
           const res = await axios.post("http://localhost:3000/endereco/cadastrar", addressInfo, config);
@@ -133,6 +150,9 @@ const Address = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Delete user address function
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleDelete = async (codend) => {
     const newAddresses = addresses.filter((address) => address.CODEND !== codend);
     setAddresses(newAddresses);
@@ -147,6 +167,9 @@ const Address = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Edit user address function
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleEdit = (address) => {
     setEditedAddress(address);
     setAddressInfo((prevAddressInfo) => ({
@@ -206,6 +229,8 @@ const Address = () => {
           <input type="submit" id="submit-address" value="Atualizar dados" />
         </div>
       </form>
+
+      {/* Display address from user if exists at least one */}
       {addresses.length > 0 && <h1>Endereços cadastrados:</h1>}
       {addresses.map((address, index) => (
         <>

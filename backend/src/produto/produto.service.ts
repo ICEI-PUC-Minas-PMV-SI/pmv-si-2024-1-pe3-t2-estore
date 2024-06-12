@@ -135,13 +135,13 @@ export class ProdutoService {
       }
 
       const atualizar = await this.prisma.produtos.update({
-        where: { CODPROD: body.CODPROD },
+        where: { CODPROD: +body.CODPROD },
         data: {
           PRODUTO: body.PRODUTO,
           DESCRICAO: body.DESCRICAO,
           IMAGEM: body.IMAGEM,
-          ESTOQUE: body.ESTOQUE,
-          VALOR: body.VALOR,
+          ESTOQUE: +body.ESTOQUE,
+          VALOR: +body.VALOR,
           CODCAT: codcat,
           DESCONTO: body.DESCONTO,
         },

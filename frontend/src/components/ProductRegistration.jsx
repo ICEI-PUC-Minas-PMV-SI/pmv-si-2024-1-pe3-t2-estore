@@ -4,8 +4,12 @@ import axios from "axios";
 import "../css/ProductRegistration.css";
 
 const ProductRegistration = () => {
+  // Route to register products
   const url_register_product = "http://localhost:3000/produto/cadastrar";
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Product field
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const [product, setProduct] = useState({
     PRODUTO: "",
     DESCRICAO: "",
@@ -16,6 +20,10 @@ const ProductRegistration = () => {
     CATEGORIA: "",
   });
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // getting inputs value to product field
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setProduct({
@@ -24,6 +32,9 @@ const ProductRegistration = () => {
     });
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // update product image (conversion png - base64)
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -38,6 +49,9 @@ const ProductRegistration = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // upload product
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

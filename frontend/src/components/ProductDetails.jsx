@@ -12,17 +12,29 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "../css/ProductDetails.css";
 
 const ProductDetails = () => {
+  // Products
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
+
+  // Loading
   const [loading, setLoading] = useState(true);
+
+  // Products
   const [selectedSize, setSelectedSize] = useState("");
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
+
+  // Validations
   const [token, setToken] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // Pop Ups
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [editableProduct, setEditableProduct] = useState({});
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Set css to spinner loading
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const override = css`
     display: block;
     margin: 0 auto;
@@ -36,8 +48,11 @@ const ProductDetails = () => {
     height: "100vh",
   };
 
-  const storedToken = localStorage.getItem("token");
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Check if user is admin to display more buttons
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
+  const storedToken = localStorage.getItem("token");
   useEffect(() => {
     if (storedToken) {
       try {
@@ -53,6 +68,10 @@ const ProductDetails = () => {
       }
     }
   }, [storedToken]);
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Fetch products from backend
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -73,11 +92,17 @@ const ProductDetails = () => {
     fetchProductDetails();
   }, [productId]);
 
-  const handleBuy = async () => {};
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Set size of the product
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
   };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Set messagem when hovering cart button
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
   const handleMouseOverCart = () => {
     setShowAddToCartMessage(true);
@@ -87,8 +112,12 @@ const ProductDetails = () => {
     setShowAddToCartMessage(false);
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Set and remove edit product pop-up
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
   const handleEditClick = () => {
-    setEditableProduct({ ...product, CODPROD: parseInt(productId, 10) }); // Converte CODPROD para inteiro
+    setEditableProduct({ ...product, CODPROD: parseInt(productId, 10) });
     setIsPopupOpen(true);
   };
 
@@ -104,6 +133,10 @@ const ProductDetails = () => {
     }));
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // update product image in pop-up (conversion png - base64)
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -118,6 +151,14 @@ const ProductDetails = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Buy product function
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  const handleBuy = async () => {};
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Edit product function
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleSaveChanges = async (e) => {
     e.preventDefault();
     try {
@@ -138,6 +179,10 @@ const ProductDetails = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Set and remove delete product pop-up
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
   const handleConfirmDeleteProduct = () => {
     setShowDeleteConfirmation(true);
   };
@@ -145,6 +190,10 @@ const ProductDetails = () => {
   const handleCancelDeleteProduct = () => {
     setShowDeleteConfirmation(false);
   };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Delete product function
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
   const handleDeleteProduct = async (e) => {
     e.preventDefault();
@@ -157,6 +206,10 @@ const ProductDetails = () => {
       console.error("Erro ao excluir o produto:", error);
     }
   };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Loading stuff
+  // // // // // // // // // // // // // // // // // // // // // // // //
 
   if (loading) {
     return (
@@ -198,10 +251,6 @@ const ProductDetails = () => {
           </div>
 
           <form className="submit-producttt" onSubmit={handleBuy}>
-            <button type="submit" id="submit-buy-product" className="flex items-center">
-              <PiShoppingCartFill className="inline mr-1" />
-              Comprar
-            </button>
             {isAdmin && (
               <>
                 <button type="button" id="submit-edit-product" className="admin-buttons" onClick={handleEditClick}>
@@ -214,6 +263,10 @@ const ProductDetails = () => {
                 </button>
               </>
             )}
+            <button type="submit" id="submit-buy-product" className="flex items-center">
+              <PiShoppingCartFill className="inline mr-1" />
+              Comprar
+            </button>
           </form>
         </div>
       </div>
@@ -231,19 +284,25 @@ const ProductDetails = () => {
         </div>
       </div>
 
+      {/* // // // // // // // // // // // // // // // // // // // // // // // //
+      // Set edit popup
+       // // // // // // // // // // // // // // // // // // // // // // // // */}
       {showDeleteConfirmation && (
         <div className="popup">
           <div className="popup-content">
             <h2>Confirmar exclusão</h2>
             <p>Tem certeza de que deseja excluir este produto?</p>
             <div className="popup-buttons">
-              <button onClick={handleDeleteProduct}>Sim</button>
               <button onClick={handleCancelDeleteProduct}>Não</button>
+              <button onClick={handleDeleteProduct}>Sim</button>
             </div>
           </div>
         </div>
       )}
 
+      {/* // // // // // // // // // // // // // // // // // // // // // // // //
+      // Set delete popup
+     // // // // // // // // // // // // // // // // // // // // // // // // */}
       {isPopupOpen && (
         <div className="popup">
           <div className="popup-content">
@@ -261,12 +320,16 @@ const ProductDetails = () => {
               <input type="text" name="VALOR" value={editableProduct.VALOR || ""} onChange={handleInputChange} />
             </label>
             <label>
+              Estoque:
+              <input type="text" name="ESTOQUE" value={editableProduct.ESTOQUE || ""} onChange={handleInputChange} />
+            </label>
+            <label>
               Imagem URL:
               <input type="file" name="IMAGEM" accept="image/*" onChange={handleImageChange} />
             </label>
             <div className="popup-buttons">
-              <button onClick={handleSaveChanges}>Salvar</button>
               <button onClick={handlePopupClose}>Cancelar</button>
+              <button onClick={handleSaveChanges}>Salvar</button>
             </div>
           </div>
         </div>

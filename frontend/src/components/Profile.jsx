@@ -5,6 +5,9 @@ import "../css/Profile.css";
 import axios from "axios";
 
 const Profile = () => {
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Person field
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const [userData, setUserData] = useState({
     CODPES: "",
     NOME: "",
@@ -14,6 +17,9 @@ const Profile = () => {
     EMAIL: "",
   });
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Password
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const [userPassword, setUserPassword] = useState({
     EMAIL: "",
     SENHA: "",
@@ -22,6 +28,9 @@ const Profile = () => {
 
   const [passwordError, setPasswordError] = useState("");
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // getting data from inputs and setting
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -32,6 +41,9 @@ const Profile = () => {
     setUserPassword({ ...userPassword, [name]: value });
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Fetch user data
+  // // // // // // // // // // // // // // // // // // // // // // // //
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -68,6 +80,9 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Update user data function
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const updateData = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -86,6 +101,9 @@ const Profile = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Update password function
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const updatePassword = async (e) => {
     if (userPassword.SENHA !== userPassword.CONFIRMAR_SENHA) {
       setPasswordError("As senhas não coincidem. Por favor, verifique.");

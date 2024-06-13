@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Inputs from "./fragments/Inputs";
 import axios from "axios";
 import "../css/ProductRegistration.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductRegistration = () => {
   // Route to register products
   const url_register_product = "http://localhost:3000/produto/cadastrar";
 
-  // // // // // // // // // // // // // // // // // // // // // // // //
   // Product field
-  // // // // // // // // // // // // // // // // // // // // // // // //
   const [product, setProduct] = useState({
     PRODUTO: "",
     DESCRICAO: "",
@@ -20,10 +20,10 @@ const ProductRegistration = () => {
     CATEGORIA: "",
   });
 
-  // // // // // // // // // // // // // // // // // // // // // // // //
-  // getting inputs value to product field
-  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Reference for file input
+  const fileInputRef = useRef(null);
 
+  // Getting inputs value to product field
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setProduct({
@@ -32,9 +32,7 @@ const ProductRegistration = () => {
     });
   };
 
-  // // // // // // // // // // // // // // // // // // // // // // // //
-  // update product image (conversion png - base64)
-  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Update product image (conversion png - base64)
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -49,9 +47,7 @@ const ProductRegistration = () => {
     }
   };
 
-  // // // // // // // // // // // // // // // // // // // // // // // //
-  // upload product
-  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Upload product
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -67,10 +63,42 @@ const ProductRegistration = () => {
         IMAGEM: "",
         CATEGORIA: "",
       });
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      toast.success("Produto cadastrado com sucesso!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
+      if (error.response && error.response.status === 500) {
+        toast.error("Erro 500: Erro ao cadastrar produto. Tente novamente mais tarde.", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.error("Erro ao cadastrar produto. Tente novamente.", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       console.error("Erro ao cadastrar produto:", error);
     }
-    console.log(product);
   };
 
   return (
@@ -101,7 +129,17 @@ const ProductRegistration = () => {
             </select>
           </div>
           <div className="form-group">
-            <Inputs label="Imagem do Produto:" type="file" name="IMAGEM" id="image" accept="image/*" onChange={handleImageChange} className="form-control" required />
+            <Inputs
+              label="Imagem do Produto:"
+              type="file"
+              name="IMAGEM"
+              id="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="form-control"
+              required
+              ref={fileInputRef}
+            />
           </div>
         </div>
         <div className="column">
@@ -119,6 +157,7 @@ const ProductRegistration = () => {
       <div className="submit-product">
         <input type="submit" value="Cadastrar produto" />
       </div>
+      <ToastContainer />
     </form>
   );
 };

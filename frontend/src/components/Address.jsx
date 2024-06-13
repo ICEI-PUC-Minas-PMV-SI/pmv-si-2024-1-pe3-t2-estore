@@ -4,6 +4,8 @@ import "../css/Address.css";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import Inputs from "./fragments/Inputs";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Address = () => {
   // // // // // // // // // // // // // // // // // // // // // // // //
@@ -62,7 +64,15 @@ const Address = () => {
 
       setInvalidCep(!data.cep);
     } catch (error) {
-      console.error("Erro ao buscar o CEP:", error);
+      toast.error("Erro ao buscar CEP. Tente mais tarde!", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -95,7 +105,15 @@ const Address = () => {
         });
         setAddresses(user.ENDERECOS);
       } catch (error) {
-        console.error("Erro ao buscar os dados do usuário:", error);
+        toast.error("Erro ao buscar dados. Tente mais tarde!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   };
@@ -129,6 +147,15 @@ const Address = () => {
           }));
           setCEP("");
           setAddresses((prevAddresses) => prevAddresses.map((address) => (address.CODEND === editedAddress.CODEND ? { ...address, ...addressInfo } : address)));
+          toast.success("Endereço atualizado com sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         } else {
           const res = await axios.post("http://localhost:3000/endereco/cadastrar", addressInfo, config);
           setAddresses([...addresses, addressInfo]);
@@ -143,9 +170,60 @@ const Address = () => {
             DESCRICAO: "",
           }));
           setCEP("");
+          toast.success("Endereço adicionado com sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       } catch (error) {
-        console.error("Erro ao atualizar os dados:", error);
+        if (error.response && error.response.status === 409) {
+          toast.error("Descrição de endereço já utilizada!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+        if (error.response && error.response.status === 400) {
+          toast.error("Erro ao enviar. Tente mais tarde!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+        if (error.response && error.response.status === 406) {
+          toast.error("Máximo de endereços cadastrados (3)!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+        setAddressInfo((prevInfo) => ({
+          ...prevInfo,
+          CEP: "",
+          RUA: "",
+          BAIRRO: "",
+          CIDADE: "",
+          COMPLEMENTO: "",
+          NUMERO: "",
+          DESCRICAO: "",
+        }));
       }
     }
   };
@@ -161,8 +239,25 @@ const Address = () => {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         await axios.delete(`http://localhost:3000/endereco/deletar?CODEND=${codend}`, config);
+        toast.success("Endereço deletado com sucesso!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } catch (error) {
-        console.error(error);
+        toast.error("Errro ao deletar endereço. Tente novamente!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   };
@@ -229,6 +324,7 @@ const Address = () => {
           <input type="submit" id="submit-address" value="Atualizar dados" />
         </div>
       </form>
+      <ToastContainer />
 
       {/* Display address from user if exists at least one */}
       {addresses.length > 0 && <h1>Endereços cadastrados:</h1>}

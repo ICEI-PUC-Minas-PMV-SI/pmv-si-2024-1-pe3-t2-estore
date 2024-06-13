@@ -21,7 +21,7 @@ export class EnderecoService {
       if (buscaEnderecos.length === 3) {
         throw new HttpException(
           `Limite de endereços cadastrados (3)`,
-          HttpStatus.CONFLICT,
+          HttpStatus.NOT_ACCEPTABLE,
         );
       }
       const buscaEndereco = await this.prisma.endereco.findFirst({

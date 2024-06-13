@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 import Inputs from "./fragments/Inputs";
 import "../css/Profile.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   // // // // // // // // // // // // // // // // // // // // // // // //
@@ -95,8 +97,25 @@ const Profile = () => {
       try {
         const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
         console.log("Dados atualizados com sucesso:", res);
+        toast.success("Senha atualizada com sucesso!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       } catch (error) {
-        console.error("Erro ao atualizar os dados:", error);
+        toast.error("Erro ao atualizar. Tente mais tarde!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     }
   };
@@ -116,7 +135,15 @@ const Profile = () => {
         try {
           delete userPassword.CONFIRMAR_SENHA;
           const res = await axios.patch("http://localhost:3000/alterar/senha", userPassword);
-          console.log("Senha atualizada com sucesso:", res);
+          toast.success("Senha atualizada com sucesso!", {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           setPasswordError("");
         } catch (error) {
           console.error("Erro ao atualizar a senha:", error);
@@ -146,6 +173,7 @@ const Profile = () => {
           <input type="submit" value="Cadastrar nova senha" />
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

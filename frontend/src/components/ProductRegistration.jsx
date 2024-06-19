@@ -47,7 +47,9 @@ const ProductRegistration = () => {
     }
   };
 
+  // // // // // // // // // // // // // // // // // // // // // // // //
   // Upload product
+  // // // // // // // // // // // // // // // // // // // // // // // //
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

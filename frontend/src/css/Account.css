@@ -60,9 +60,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Alinhe os itens no topo */
+  justify-content: flex-start;
   width: 70%;
-  overflow-y: auto; /* Adicione uma barra de rolagem vertical se necessário */
+  overflow-y: auto;
 }
 
 @media (max-width: 900px) {

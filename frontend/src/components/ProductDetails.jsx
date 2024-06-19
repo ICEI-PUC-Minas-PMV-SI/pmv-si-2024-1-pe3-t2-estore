@@ -10,6 +10,8 @@ import { css } from "@emotion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import "../css/ProductDetails.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetails = () => {
   // Products
@@ -22,6 +24,7 @@ const ProductDetails = () => {
   // Products
   const [selectedSize, setSelectedSize] = useState("");
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   // Validations
   const [token, setToken] = useState(null);
@@ -134,6 +137,18 @@ const ProductDetails = () => {
   };
 
   // // // // // // // // // // // // // // // // // // // // // // // //
+  // Quantity
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
+  const increaseQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
   // update product image in pop-up (conversion png - base64)
   // // // // // // // // // // // // // // // // // // // // // // // //
 
@@ -149,6 +164,46 @@ const ProductDetails = () => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  // // // // // // // // // // // // // // // // // // // // // // // //
+  // Add to cart function
+  // // // // // // // // // // // // // // // // // // // // // // // //
+
+  const addToCart = () => {
+    if (!selectedSize) {
+      toast.error("Por favor, selecione um tamanho antes de adicionar ao carrinho.", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productWithSize = { ...product, size: selectedSize };
+
+    const existingProductIndex = cart.findIndex((item) => item.CODPROD === productWithSize.CODPROD && item.size === productWithSize.size);
+
+    if (existingProductIndex >= 0) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      cart.push({ ...productWithSize, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    toast.success("Produto adicionado ao carrinho!", {
+      position: "bottom-right",
+      autoClose: 6000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   // // // // // // // // // // // // // // // // // // // // // // // //
@@ -228,7 +283,7 @@ const ProductDetails = () => {
       <div className="product-details">
         <div className="image-product-side">
           <div className="cart-icon-container" onMouseOver={handleMouseOverCart} onMouseOut={handleMouseOutCart}>
-            <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" />
+            <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" onClick={addToCart} />
             {showAddToCartMessage && <p className="add-to-cart-message">Adicionar ao carrinho</p>}
           </div>
           <img src={product.IMAGEM} alt={product.PRODUTO} />
@@ -237,6 +292,17 @@ const ProductDetails = () => {
           <h1>{product.PRODUTO}</h1>
           <p>{product.DESCRICAO}</p>
           <p className="price">Preço: R${product.VALOR}</p>
+
+          <div className="quantity-selection">
+            <p> Quantidade: </p>
+            <button onClick={decreaseQuantity} className="quantity-button">
+              -
+            </button>
+            <span className="quantity">{quantity}</span>
+            <button onClick={increaseQuantity} className="quantity-button">
+              +
+            </button>
+          </div>
 
           <div className="size-selection">
             <button onClick={() => handleSizeSelect("P")} className={selectedSize === "P" ? "selected" : ""}>
@@ -283,6 +349,7 @@ const ProductDetails = () => {
           </p>
         </div>
       </div>
+      <ToastContainer />
 
       {/* // // // // // // // // // // // // // // // // // // // // // // // //
       // Set edit popup

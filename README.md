@@ -10,10 +10,8 @@
    ## Integrantes:
    - Gabriel Amorim Santos
    - Lucas Morais Barcelos
-   - Paulo Alves Andrade
    - Pedro Henrique Nunes Alves
    - Victor Hugo Vasquez da Silva
-   - Wesney Andrade Souza
 
    ## Instruções para iniciar o Frontend
 

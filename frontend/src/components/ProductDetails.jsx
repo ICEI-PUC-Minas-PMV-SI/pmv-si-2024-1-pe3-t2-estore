@@ -18,6 +18,9 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
 
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomStyle, setZoomStyle] = useState({});
+
   // Loading
   const [loading, setLoading] = useState(true);
 
@@ -262,6 +265,16 @@ const ProductDetails = () => {
     }
   };
 
+  // Handle mouse move on image
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setZoomStyle({
+      transformOrigin: `${x}% ${y}%`,
+    });
+  };
+
   // // // // // // // // // // // // // // // // // // // // // // // //
   // Loading stuff
   // // // // // // // // // // // // // // // // // // // // // // // //
@@ -286,7 +299,14 @@ const ProductDetails = () => {
             <FontAwesomeIcon icon={faShoppingCart} className="cart-icon" onClick={addToCart} />
             {showAddToCartMessage && <p className="add-to-cart-message">Adicionar ao carrinho</p>}
           </div>
-          <img src={product.IMAGEM} alt={product.PRODUTO} />
+          <img
+            src={product.IMAGEM}
+            alt={product.NOME}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsZoomed(true)}
+            onMouseLeave={() => setIsZoomed(false)}
+            style={isZoomed ? { transform: "scale(1.2)", ...zoomStyle } : {}}
+          />
         </div>
         <div className="description-products">
           <h1>{product.PRODUTO}</h1>

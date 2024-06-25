@@ -53,6 +53,7 @@ const CartProducts = ({ onTotalChange }) => {
     setProducts(products.filter((product) => product.CODPROD !== productId));
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     toast.success("Produto removido do carrinho");
+    calculateTotal();
   };
 
   const handleIncreaseQuantity = (productId) => {

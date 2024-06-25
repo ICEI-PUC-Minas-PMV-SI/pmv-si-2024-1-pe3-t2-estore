@@ -33,8 +33,8 @@
 
 .add-to-cart-message {
   position: absolute;
-  top: calc(12%);
-  right: 0;
+  top: calc(10%);
+  right: 10%;
   transform: translateX(50%);
   background-color: #333;
   color: white;
@@ -42,11 +42,14 @@
   border-radius: 5px;
   display: none;
   opacity: 0;
+  z-index: 9;
+
   transition: opacity 0.3s ease-in-out;
 }
 
 .cart-icon-container:hover .add-to-cart-message {
-  display: inline-block;
+  display: flex;
+  z-index: 999;
   opacity: 1;
 }
 
@@ -141,6 +144,34 @@
   color: #333;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+}
+
+.image-product-side {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-product-side img {
+  width: 100%;
+  transition: transform 0.7s ease;
+}
+
+.product-image {
+  cursor: zoom-in;
+}
+
+.product-image.zoomed {
+  cursor: zoom-out;
+}
+
+.image-product-side .zoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .size-selection button:hover {

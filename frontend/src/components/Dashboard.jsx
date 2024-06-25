@@ -91,12 +91,6 @@ const Dashboard = () => {
           <Product title={product.PRODUTO} image={product.IMAGEM} price={product.VALOR} />
         </Link>
       ))}
-
-      {loading && hasMore && (
-        <div style={spinnerContainerStyle}>
-          <ClipLoader color={"#000"} loading={loading} css={override} size={150} />
-        </div>
-      )}
     </div>
   );
 };

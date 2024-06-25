@@ -12,6 +12,7 @@ import { PessoaController } from './pessoa/pessoa.controller';
 import { EnderecoController } from './endereco/endereco.controller';
 import { ProdutoController } from './produto/produto.controller';
 import { PedidoController } from './pedido/pedido.controller';
+import { PedidoService } from './pedido/pedido.service';
 
 @Module({
   imports: [],
@@ -31,7 +32,7 @@ import { PedidoController } from './pedido/pedido.controller';
     EnderecoService,
     PessoaService,
     ProdutoService,
-    PedidoController,
+    PedidoService,
   ],
 })
 export class AppModule {}

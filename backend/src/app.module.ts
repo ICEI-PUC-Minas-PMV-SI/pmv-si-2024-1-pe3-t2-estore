@@ -11,6 +11,7 @@ import { ProdutoService } from './produto/produto.service';
 import { PessoaController } from './pessoa/pessoa.controller';
 import { EnderecoController } from './endereco/endereco.controller';
 import { ProdutoController } from './produto/produto.controller';
+import { PedidoController } from './pedido/pedido.controller';
 
 @Module({
   imports: [],
@@ -20,6 +21,7 @@ import { ProdutoController } from './produto/produto.controller';
     PessoaController,
     EnderecoController,
     ProdutoController,
+    PedidoController,
   ],
   providers: [
     AppService,
@@ -29,6 +31,7 @@ import { ProdutoController } from './produto/produto.controller';
     EnderecoService,
     PessoaService,
     ProdutoService,
+    PedidoController,
   ],
 })
 export class AppModule {}

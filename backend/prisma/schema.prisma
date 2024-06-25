@@ -30,6 +30,8 @@ model Pessoa {
   USUARIO   Login      @relation(fields: [CODUSU], references: [CODUSU])
   ENDERECOS Endereco[]
 
+  PEDIDOS Pedido[]
+
   @@map("INFOS")
 }
 
@@ -42,6 +44,8 @@ model Endereco {
   CIDADE      String
   COMPLEMENTO String
   DESCRICAO   String
+
+  PEDIDOS Pedido[]
 
   PESSOA Pessoa? @relation(fields: [CODPES], references: [CODPES])
   CODPES Int
@@ -62,10 +66,10 @@ model Produtos {
   PRODUTO   String
   DESCRICAO String
   IMAGEM    String
-  ESTOQUE   Float
+  ESTOQUE   Float  @default(0)
 
-  VALOR      Float
-  DESCONTO   Float?
+  VALOR      Float       @default(0)
+  DESCONTO   Float?      @default(0)
   CATEGORIAS Categorias? @relation(fields: [CODCAT], references: [CODCAT])
   CODCAT     Int?
 
@@ -77,12 +81,17 @@ model Produtos {
 model Pedido {
   CODPED Int @id @default(autoincrement())
 
-  SUBTOTAL   Float
-  VALORTOTAL Float
-  DESCONTO   Float
-  FRETE      Float
+  SUBTOTAL   Float? @default(0)
+  VALORTOTAL Float? @default(0)
+  DESCONTO   Float? @default(0)
+  FRETE      Float? @default(0)
 
   ITENSPEDIDO ItensPedido[]
+
+  ENDERECO Endereco? @relation(fields: [CODEND], references: [CODEND])
+  CODEND   Int?
+  PESSOA   Pessoa?   @relation(fields: [CODPES], references: [CODPES])
+  CODPES   Int?
 
   DATAINC DateTime @default(now())
 
@@ -91,6 +100,8 @@ model Pedido {
 
 model ItensPedido {
   CODITEM Int @id @default(autoincrement())
+
+  TAMANHO String?
 
   Produtos Produtos? @relation(fields: [CODPROD], references: [CODPROD])
   CODPROD  Int?

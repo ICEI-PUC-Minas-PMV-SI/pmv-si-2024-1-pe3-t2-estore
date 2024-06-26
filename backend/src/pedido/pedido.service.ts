@@ -26,7 +26,7 @@ export class PedidoService {
     try {
       if (body.CODPES) {
         const buscaPedido = await this.prisma.pedido.findMany({
-          where: { CODPES: body.CODPES },
+          where: { CODPES: +body.CODPES },
           include: { ITENSPEDIDO: true, ENDERECO: true },
         });
 
@@ -44,10 +44,15 @@ export class PedidoService {
 
   async cadastrar(body: any) {
     try {
+      // Verificação se body.ITENS está definido e é um array
+      if (!body.ITENS || !Array.isArray(body.ITENS)) {
+        throw new Error('A propriedade ITENS deve ser um array.');
+      }
+
       const cadastrar = await this.prisma.pedido.create({
         data: {
-          CODEND: body.CODEND,
-          CODPES: body.CODPES,
+          CODEND: +body.CODEND,
+          CODPES: +body.CODPES,
           DESCONTO: body.DESCONTO,
           FRETE: body.FRETE,
         },
@@ -71,7 +76,7 @@ export class PedidoService {
             CODPED: cadastrar.CODPED,
             CODPROD: item.CODPROD,
             TAMANHO: item.TAMANHO,
-            QTD: item.QTD,
+            QTD: +item.QTD,
           },
         });
       }

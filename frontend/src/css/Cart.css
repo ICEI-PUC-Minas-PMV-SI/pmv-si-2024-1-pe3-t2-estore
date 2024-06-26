@@ -28,23 +28,75 @@
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 150px;
+  height: 300px;
   padding: 30px;
   background-color: whitesmoke;
 }
 
-#close-cart {
-  display: flex;
-  align-items: center;
-  padding: 3px;
-  justify-content: center;
-  margin-top: 10px;
-  cursor: pointer;
-  background-color: rgb(255, 183, 0);
+.address-selection {
+  margin-top: 20px;
 }
 
-#close-cart:hover {
-  background-color: rgba(240, 100, 0, 0.592);
+.address-selection label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.address-selection select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  cursor: pointer;
+
+  margin-bottom: 30px;
+  transition: border-color 0.3s ease;
+}
+
+.address-selection select:focus {
+  border-color: black;
+  cursor: pointer;
+  outline: none;
+}
+
+.address-selection select option {
+  padding: 2px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.address-selection select option:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+#close-cart {
+  width: 100%;
+  padding: 5px;
+  font-size: 1.2rem;
+  color: black;
+  background-color: #fda900e4;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#close-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#close-cart:hover:not(:disabled) {
+  color: black;
+  background-color: #49f90f8f;
 }
 
 .product-cart {

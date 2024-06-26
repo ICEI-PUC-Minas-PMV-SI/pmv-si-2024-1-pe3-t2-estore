@@ -102,6 +102,7 @@ model ItensPedido {
   CODITEM Int @id @default(autoincrement())
 
   TAMANHO String?
+  QTD     Int?
 
   Produtos Produtos? @relation(fields: [CODPROD], references: [CODPROD])
   CODPROD  Int?

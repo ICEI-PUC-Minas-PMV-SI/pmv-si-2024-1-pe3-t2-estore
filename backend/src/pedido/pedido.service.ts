@@ -62,7 +62,8 @@ export class PedidoService {
         });
 
         if (buscaProduto) {
-          subtotal += buscaProduto.VALOR;
+          const valorqtd = buscaProduto.VALOR * item.QTD;
+          subtotal += valorqtd;
         }
 
         await this.prisma.itensPedido.create({
@@ -70,6 +71,7 @@ export class PedidoService {
             CODPED: cadastrar.CODPED,
             CODPROD: item.CODPROD,
             TAMANHO: item.TAMANHO,
+            QTD: item.QTD,
           },
         });
       }
@@ -114,7 +116,8 @@ export class PedidoService {
         });
 
         if (buscaProduto) {
-          subtotal += buscaProduto.VALOR;
+          const valorqtd = buscaProduto.VALOR * item.QTD;
+          subtotal += valorqtd;
         }
 
         await this.prisma.itensPedido.create({
@@ -122,6 +125,7 @@ export class PedidoService {
             CODPED: buscapedido.CODPED,
             CODPROD: item.CODPROD,
             TAMANHO: item.TAMANHO,
+            QTD: item.QTD,
           },
         });
       }

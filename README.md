@@ -15,6 +15,8 @@
 
    ## Instruções para iniciar o Frontend
 
+https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ79k/edit?usp=sharing
+
 1. Na pasta <i>frontend</i>, dê esse comando:
    ~~~
    npm install

@@ -6,5 +6,5 @@ COPY . .
 RUN npm run build
 EXPOSE 3000
 ENV DATABASE_URL="postgresql://postgres:postgres@localhost:9080"
-RUN npm prisma generate
+RUN npx prisma generate
 CMD ["npm", "run", "start:dev"]

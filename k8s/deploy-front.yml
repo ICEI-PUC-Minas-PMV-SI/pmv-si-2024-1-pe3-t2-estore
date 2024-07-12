@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zabbixstore-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zabbixstore-frontend
+  template:
+    metadata:
+      labels:
+        app: zabbixstore-frontend
+    spec:
+      containers:
+        - name: zabbixstore-frontend
+          image: pnunes276/zabbixstore-frontend:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zabbixstore-frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: zabbixstore-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

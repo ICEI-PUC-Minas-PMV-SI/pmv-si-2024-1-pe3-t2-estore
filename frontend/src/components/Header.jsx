@@ -54,7 +54,6 @@ function Header() {
           localStorage.removeItem("token");
           setToken(null);
         }
-        // Verifica se o usuário é administrador
         setIsAdmin(decodedToken.PERMISSAO === "ADMINISTRADOR");
       } catch (error) {
         console.error("Error decoding token:", error);

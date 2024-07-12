@@ -44,7 +44,6 @@ export class PedidoService {
 
   async cadastrar(body: any) {
     try {
-      // Verificação se body.ITENS está definido e é um array
       if (!body.ITENS || !Array.isArray(body.ITENS)) {
         throw new Error('A propriedade ITENS deve ser um array.');
       }

@@ -8,6 +8,7 @@ import { ClipLoader } from "react-spinners";
 const Dashboard = () => {
   // Products
   const [products, setProducts] = useState([]);
+
   // Loading
   const [loading, setLoading] = useState(false);
   // Scrolling features
@@ -86,11 +87,12 @@ const Dashboard = () => {
 
   return (
     <div className="list-products">
-      {products.map((product, index) => (
-        <Link to={`/product/${product.CODPROD}`} key={`${product.CODPROD}-${index}`}>
-          <Product title={product.PRODUTO} image={product.IMAGEM} price={product.VALOR} />
-        </Link>
-      ))}
+      {Array.isArray(products) &&
+        products.map((product, index) => (
+          <Link to={`/product/${product.CODPROD}`} key={`${product.CODPROD}-${index}`}>
+            <Product title={product.PRODUTO} image={product.IMAGEM} price={product.VALOR} />
+          </Link>
+        ))}
     </div>
   );
 };

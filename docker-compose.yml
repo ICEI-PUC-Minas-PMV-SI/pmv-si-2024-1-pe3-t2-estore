@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "9080:5432"
+    networks:
+      - backend_network
+
+  backend:
+    image: pnunes276/zabbixstore-backend:latest
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432
+    ports:
+      - "3000:3000"
+    networks:
+      - backend_network
+
+  frontend:
+    image: pnunes276/zabbixstore-frontend:latest
+    ports:
+      - "80:80"
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge
+
+volumes:
+  postgres:

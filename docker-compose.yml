@@ -24,6 +24,8 @@ services:
 
   frontend:
     image: pnunes276/zabbixstore-frontend:latest
+    environment:
+      -
     ports:
       - "80:80"
     networks:

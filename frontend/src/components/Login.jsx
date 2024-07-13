@@ -7,7 +7,7 @@ import Inputs from "./fragments/Inputs";
 const Login = () => {
   const navigate = useNavigate();
   // Route to check if user has an account on website
-  const url_login = "http://localhost:3000/login";
+  const url_login = "http://backend:3000/login";
   // Messages to validate and display errors or success
   const [message, setMessage] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);

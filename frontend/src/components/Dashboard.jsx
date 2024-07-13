@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [page, setPage] = useState(0);
 
   // Route to list products
-  const url_fetchproducts = "http://localhost:3000/produto/listar";
+  const url_fetchproducts = "http://backend:3000/produto/listar";
 
   // // // // // // // // // // // // // // // // // // // // // // // //
   // Set css to spinner loading

@@ -19,7 +19,7 @@ const CartProducts = ({ onTotalChange }) => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const productDetailsPromises = cart.map((item) => axios.get(`http://localhost:3000/produto/buscar?CODPROD=${item.CODPROD}`));
+        const productDetailsPromises = cart.map((item) => axios.get(`http://backend:3000/produto/buscar?CODPROD=${item.CODPROD}`));
         const responses = await Promise.all(productDetailsPromises);
 
         const fetchedProducts = responses.map((response, index) => ({

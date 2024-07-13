@@ -63,7 +63,7 @@ const Profile = () => {
             EMAIL: decodedToken.EMAIL,
           });
 
-          const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
+          const response = await axios.get(`http://backend:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
           const user = response.data;
           setUserData({
             CODPES: user.CODPES,
@@ -95,7 +95,7 @@ const Profile = () => {
         },
       };
       try {
-        const res = await axios.post("http://localhost:3000/pessoa/atualizar", userData, config);
+        const res = await axios.post("http://backend:3000/pessoa/atualizar", userData, config);
         console.log("Dados atualizados com sucesso:", res);
         toast.success("Senha atualizada com sucesso!", {
           position: "bottom-right",
@@ -134,7 +134,7 @@ const Profile = () => {
       if (token) {
         try {
           delete userPassword.CONFIRMAR_SENHA;
-          const res = await axios.patch("http://localhost:3000/alterar/senha", userPassword);
+          const res = await axios.patch("http://backend:3000/alterar/senha", userPassword);
           toast.success("Senha atualizada com sucesso!", {
             position: "bottom-right",
             autoClose: 3000,

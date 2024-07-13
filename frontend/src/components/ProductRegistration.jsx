@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProductRegistration = () => {
   // Route to register products
-  const url_register_product = "http://localhost:3000/produto/cadastrar";
+  const url_register_product = "http://backend:3000/produto/cadastrar";
 
   // Product field
   const [product, setProduct] = useState({

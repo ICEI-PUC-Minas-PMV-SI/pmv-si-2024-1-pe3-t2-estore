@@ -83,7 +83,7 @@ const ProductDetails = () => {
     const fetchProductDetails = async () => {
       try {
         if (productId) {
-          const response = await axios.get(`http://localhost:3000/produto/buscar?CODPROD=${parseInt(productId, 10)}`);
+          const response = await axios.get(`http://backend:3000/produto/buscar?CODPROD=${parseInt(productId, 10)}`);
           setProduct(response.data);
         } else {
           throw new Error("ID do produto não fornecido");
@@ -223,7 +223,7 @@ const ProductDetails = () => {
       const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const response = await axios.patch(
-        `http://localhost:3000/produto/atualizar`,
+        `http://backend:3000/produto/atualizar`,
         {
           ...editableProduct,
           CODPROD: parseInt(editableProduct.CODPROD, 10),
@@ -258,7 +258,7 @@ const ProductDetails = () => {
     try {
       const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      await axios.delete(`http://localhost:3000/produto/deletar?CODPROD=${parseInt(productId, 10)}`, config);
+      await axios.delete(`http://backend:3000/produto/deletar?CODPROD=${parseInt(productId, 10)}`, config);
       window.location.href = "/";
     } catch (error) {
       console.error("Erro ao excluir o produto:", error);

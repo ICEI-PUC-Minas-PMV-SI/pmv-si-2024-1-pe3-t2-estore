@@ -17,6 +17,7 @@ services:
     image: pnunes276/zabbixstore-backend:latest
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432
+      - PORT=3000
     ports:
       - "3000:3000"
     networks:
@@ -24,8 +25,6 @@ services:
 
   frontend:
     image: pnunes276/zabbixstore-frontend:latest
-    environment:
-      -
     ports:
       - "80:80"
     networks:

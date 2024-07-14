@@ -7,7 +7,7 @@ import Inputs from "./fragments/Inputs";
 const Login = () => {
   const navigate = useNavigate();
   // Route to check if user has an account on website
-  const url_login = "http://backend:3000/login";
+  const url_login = "http://localhost:3000/login";
   // Messages to validate and display errors or success
   const [message, setMessage] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -29,7 +29,7 @@ const Login = () => {
     }
   }, [retrievetoken, navigate]);
 
-  // Creating some inputs to receive and manipulate data, it will also used to send to the backend
+  // Creating some inputs to receive and manipulate data, it will also used to send to the localhost
   const [loginData, setLoginData] = useState({
     EMAIL: "",
     SENHA: "",
@@ -43,7 +43,7 @@ const Login = () => {
       const res = await axios.post(url_login, loginData);
       if (res.status === 201 || res.status === 204 || res.status === 200) {
         setIsSuccess(true);
-        // Saving the token into localstorage that came from backend
+        // Saving the token into localstorage that came from localhost
         const token = res.data.token;
         localStorage.setItem("token", token);
         navigate("/");

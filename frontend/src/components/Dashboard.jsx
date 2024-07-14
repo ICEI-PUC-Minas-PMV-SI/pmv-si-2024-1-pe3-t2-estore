@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [page, setPage] = useState(0);
 
   // Route to list products
-  const url_fetchproducts = `${process.env.backend}/produto/listar`;
+  const url_fetchproducts = `${process.env.localhost}/produto/listar`;
 
   // // // // // // // // // // // // // // // // // // // // // // // //
   // Set css to spinner loading

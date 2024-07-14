@@ -97,7 +97,7 @@ const Address = () => {
       try {
         const decodedToken = jwtDecode(token);
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const response = await axios.get(`http://backend:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
+        const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
         const user = response.data;
 
         setAddressInfo({
@@ -134,7 +134,7 @@ const Address = () => {
       try {
         if (editedAddress) {
           delete addressInfo.CODPES;
-          await axios.patch("http://backend:3000/endereco/atualizar/", addressInfo, config);
+          await axios.patch("http://localhost:3000/endereco/atualizar/", addressInfo, config);
           setAddressInfo((prevInfo) => ({
             ...prevInfo,
             CEP: "",
@@ -157,7 +157,7 @@ const Address = () => {
             progress: undefined,
           });
         } else {
-          const res = await axios.post("http://backend:3000/endereco/cadastrar", addressInfo, config);
+          const res = await axios.post("http://localhost:3000/endereco/cadastrar", addressInfo, config);
           setAddresses([...addresses, addressInfo]);
           setAddressInfo((prevInfo) => ({
             ...prevInfo,
@@ -238,7 +238,7 @@ const Address = () => {
     if (token) {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
-        await axios.delete(`http://backend:3000/endereco/deletar?CODEND=${codend}`, config);
+        await axios.delete(`http://localhost:3000/endereco/deletar?CODEND=${codend}`, config);
         toast.success("Endereço deletado com sucesso!", {
           position: "bottom-right",
           autoClose: 3000,

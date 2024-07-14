@@ -14,7 +14,7 @@ const History = () => {
       try {
         const decodedToken = jwtDecode(token);
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const response = await axios.get(`http://backend:3000/pedido/listar?CODPES=${decodedToken.CODPES}`, config);
+        const response = await axios.get(`http://localhost:3000/pedido/listar?CODPES=${decodedToken.CODPES}`, config);
         const userPedidos = response.data;
 
         setPedidos(userPedidos);

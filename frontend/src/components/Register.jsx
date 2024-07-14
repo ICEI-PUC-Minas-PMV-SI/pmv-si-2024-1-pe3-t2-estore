@@ -13,7 +13,7 @@ const Register = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Our route to register users, hitting nestJS
-  const REGISTER_URL = "http://172.18.0.3:3000/registro"
+  const REGISTER_URL = "http://localhost:3000/registro"
 
 
   // getting the JWT Token from localstorage, checking if a valid user is trying to access /register again. Same for /login
@@ -34,7 +34,7 @@ const Register = () => {
     }
   }, [retrievetoken, navigate]);
 
-  // Creating some inputs to receive and manipulate data, it will also used to send to the backend
+  // Creating some inputs to receive and manipulate data, it will also used to send to the localhost
   const [formData, setFormData] = useState({
     NOME: "",
     SOBRENOME: "",
@@ -58,7 +58,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(REGISTER_URL, formData);
-      console.log("Backend URL:", REGISTER_URL);
+      console.log("localhost URL:", REGISTER_URL);
       // if the response of post is valid (200). if not, show errors
       if ((res.status = 200)) {
         setIsSuccess(true);
@@ -68,7 +68,7 @@ const Register = () => {
         }, 1000);
       }
     } catch (error) {
-      console.log("Backend URL:", REGISTER_URL);
+      console.log("localhost URL:", REGISTER_URL);
       // showing email already exists error, or another type of error
       if ((error.response.status = 409)) {
         setMessage("Email já cadastrado.");

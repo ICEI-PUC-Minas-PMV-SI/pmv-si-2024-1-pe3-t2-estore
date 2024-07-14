@@ -42,7 +42,7 @@ const Cart = () => {
       try {
         const decodedToken = jwtDecode(token);
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const response = await axios.get(`http://backend:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
+        const response = await axios.get(`http://localhost:3000/pessoa/buscar?CODPES=${decodedToken.CODPES}`, config);
         const user = response.data;
         setAddresses(user.ENDERECOS);
       } catch (error) {
@@ -114,7 +114,7 @@ const Cart = () => {
         console.log(orderData);
 
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        await axios.post("http://backend:3000/pedido/cadastrar", orderData, config);
+        await axios.post("http://localhost:3000/pedido/cadastrar", orderData, config);
 
         localStorage.removeItem("cart");
 

@@ -27,6 +27,8 @@ services:
     image: pnunes276/zabbixstore-frontend:latest
     ports:
       - "80:80"
+    environment:
+      - backend=http://backend:3000
     networks:
       - backend_network
 

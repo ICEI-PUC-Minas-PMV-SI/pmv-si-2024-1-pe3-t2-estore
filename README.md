@@ -15,6 +15,18 @@
 
 https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ79k/edit?usp=sharing
 
+   ## Instruções para iniciar aplicação em Docker
+
+1. Vá para a raiz da aplicação e rode:
+   ~~~
+   docker-compose up -d
+   ~~~
+
+- A aplicação web ficará disponível na porta 5000 por padrão 
+   ~~~
+   http://localhost:5000
+   ~~~
+
    ## Instruções para iniciar o Frontend
 
 1. Na pasta <i>frontend</i>, dê esse comando:
@@ -34,6 +46,12 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    ~~~
     ~~~
    npx prisma init
+   ~~~
+   ~~~
+   npx prisma generate
+   ~~~
+   ~~~
+   npx prisma db push
    ~~~
 2. Após ter terminado, para iniciar a aplicação:
    ~~~

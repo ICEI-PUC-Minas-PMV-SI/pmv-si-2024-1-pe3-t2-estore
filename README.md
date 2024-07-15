@@ -27,7 +27,7 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    http://localhost:5000
    ~~~
 
-   ## Instruções para iniciar o Frontend
+   ## Instruções para iniciar separadamente o Frontend
 
 1. Na pasta <i>frontend</i>, dê esse comando:
    ~~~
@@ -38,7 +38,7 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    npm run dev
    ~~~
 
-## Instruções para iniciar o BackEnd
+## Instruções para iniciar separadamente o BackEnd
 
 1. Na pasta <i>backend</i>, dê esse comando:
    ~~~

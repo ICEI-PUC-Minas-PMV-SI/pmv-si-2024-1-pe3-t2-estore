@@ -30,6 +30,9 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    http://localhost:5000
    ~~~
 
+- A aplicação backend ficará disponível na porta 3000 por padrão
+- O postgree ficará disponível na porta 9080 da máquina local, no container porta 5432 (padrão)
+
 ## Instruções para iniciar separadamente o BackEnd
 
 1. Na pasta <i>backend</i>, dê esse comando:

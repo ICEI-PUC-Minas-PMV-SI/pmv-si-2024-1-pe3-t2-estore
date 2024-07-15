@@ -18,7 +18,7 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
 
 
 
-   ## Instruções para iniciar aplicação em Docker
+   ## Instruções para iniciar aplicação em container
 
 1. Vá para a raiz da aplicação e rode:
    ~~~

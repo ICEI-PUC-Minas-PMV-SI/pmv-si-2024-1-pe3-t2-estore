@@ -13,7 +13,8 @@ const Register = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Our route to register users, hitting nestJS
-  const REGISTER_URL = "http://localhost:3000/registro"
+  const REGISTER_URL = process.env.REACT_APP_BACKEND_URL;
+
 
 
   // getting the JWT Token from localstorage, checking if a valid user is trying to access /register again. Same for /login

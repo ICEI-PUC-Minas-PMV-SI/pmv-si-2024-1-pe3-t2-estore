@@ -13,7 +13,7 @@ const Register = () => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Our route to register users, hitting nestJS
-  const REGISTER_URL = "http://backend:3000/registro";
+  const REGISTER_URL = `${backend}/registro`;
 
 
 

@@ -1,15 +1,14 @@
+
 FROM node:latest AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY .env ./
 COPY . .
 RUN npm run build
+
 FROM node:alpine
 WORKDIR /app
 COPY --from=build /app/dist /app/dist
 RUN npm install -g serve
 EXPOSE 5000
-ARG REACT_APP_BACKEND_URL
-ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 CMD ["serve", "-s", "dist", "-l", "5000"]

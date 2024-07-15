@@ -57,6 +57,7 @@ const Register = () => {
   // if it came back with 409, the email exist, so its not possible to overwrite. Else, its a unknown error
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(REGISTER_URL)
     try {
       const res = await axios.post(REGISTER_URL, formData);
       console.log("localhost URL:", REGISTER_URL);

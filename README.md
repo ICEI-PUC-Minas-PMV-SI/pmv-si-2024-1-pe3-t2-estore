@@ -13,7 +13,10 @@
    - Pedro Henrique Nunes Alves
    - Victor Hugo Vasquez da Silva
 
+###  Documentação da aplicação
 https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ79k/edit?usp=sharing
+
+
 
    ## Instruções para iniciar aplicação em Docker
 
@@ -27,6 +30,34 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    http://localhost:5000
    ~~~
 
+## Instruções para iniciar separadamente o BackEnd
+
+1. Na pasta <i>backend</i>, dê esse comando:
+   ~~~
+   npm install
+   ~~~
+   ~~~
+   npx prisma init
+   ~~~
+   ~~~
+   npx prisma generate && npx prisma db push
+   ~~~
+2. Após ter terminado, para iniciar a aplicação:
+   ~~~
+   npm run start:dev
+   ~~~
+
+- Swagger estará disponível em:
+   ~~~
+   http://localhost:3000/api
+   ~~~
+   
+- Caso queira rodar o prisma studio, rode:
+   ~~~
+   npx prisma studio
+   ~~~
+
+
    ## Instruções para iniciar separadamente o Frontend
 
 1. Na pasta <i>frontend</i>, dê esse comando:
@@ -38,22 +69,3 @@ https://docs.google.com/presentation/d/1iNdfCZIsZcAQg2_F78KtXzX5WdicLcTvWbHqgmCJ
    npm run dev
    ~~~
 
-## Instruções para iniciar separadamente o BackEnd
-
-1. Na pasta <i>backend</i>, dê esse comando:
-   ~~~
-   npm install
-   ~~~
-    ~~~
-   npx prisma init
-   ~~~
-   ~~~
-   npx prisma generate
-   ~~~
-   ~~~
-   npx prisma db push
-   ~~~
-2. Após ter terminado, para iniciar a aplicação:
-   ~~~
-   npm run start
-   ~~~
